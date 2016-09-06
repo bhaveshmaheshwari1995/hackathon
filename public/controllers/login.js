@@ -2,9 +2,10 @@
 
 angular.module('profileBuilder.login', ['ngRoute'])
 .controller('loginCtrl',function($scope,$http,$location,$routeParams) {
-  alert("sdfsdf");
+  
 
 $scope.authenticate = function(){
+  alert("sdfsdf");
 if(1==1){
 var data = {
   userName: $scope.userEmail,

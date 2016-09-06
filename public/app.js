@@ -41,6 +41,18 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
       templateUrl: './views/employmentDetails.html',
       controller: 'employmentDetailsCtrl'
       });
+     $routeProvider.when('/refVerify', {
+      templateUrl: './views/refVerify.html',
+      controller: 'refVerifyCtrl'
+      });
+     $routeProvider.when('/passportDetails', {
+      templateUrl: './views/passportDetails.html',
+      controller: 'passportDetailsCtrl'
+      });
+     $routeProvider.when('/bankDetails', {
+      templateUrl: './views/bankDetails.html',
+      controller: 'bankDetailsCtrl'
+      });
 
 
 }]);
