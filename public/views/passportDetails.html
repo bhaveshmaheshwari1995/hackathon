@@ -29,14 +29,14 @@
 
 					<div class="row">
 						<div class="col-xs-6 form-group">
-							<input type="Date" class="form-control" id="date"
+							<input type="Date" class="form-control" id="validFrom"
 								ng-model="validFrom" placeholder="Valid From" class="col-md-6"
 								required>
 						</div>
 						<div class="col-xs-1 form-group"></div>
 						<div class="col-xs-6 form-group">
-							<input type="Date" class="form-control" id="date"
-								ng-model="validTo" placeholder="Valid To" class="col-md-6"
+							<input type="Date" class="form-control" id="validFrom"
+								ng-model="validTill" placeholder="Valid Till" class="col-md-6"
 								required>
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 						</div>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="">
+							<button type="submit" class="btn btn-block" ng-click="goToBankDetails()">
 								Continue <span class="glyphicon glyphicon-arrow-right"></span>
 							</button>
 						</div>

@@ -1,11 +1,11 @@
 'use strict';
 angular.module('profileBuilder.registration2', ['ngRoute'])
-.controller('registration1Ctrl2',function($scope,$http,$location,$routeParams) {
+.controller('registration1Ctrl2',function($scope,$http,$location,$routeParams,appSettings) {
   var userId = $routeParams.userId;
   var emergencyContact=[];
 
 
-  $http.get('/getData/'+userId)
+  $http.get(appSettings.apiBase + '/getData/'+userId)
   .success(function(response) {
     if(response.success){
       $scope.userData=response.userData;
@@ -56,7 +56,7 @@ $scope.saveData=function(){
         emergencyContact : emergencyContact
     };
 
-    $http.put('/saveDataPage2', data)
+    $http.put(appSettings.apiBase + '/saveDataPage2', data)
     .success(function(response) {
      if(response.success){
           alert("User Details Updated successfully");

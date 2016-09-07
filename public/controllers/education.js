@@ -3,9 +3,7 @@ angular.module('profileBuilder.education', ['ngRoute'])
 .controller('educationCtrl',function($scope,$http,$location,$routeParams,appSettings) {
   var userId = $routeParams.userId;
   $scope.education=[];
-
   $scope.addEducationDetails = function(){
-  alert("aaya");
     var institution = $scope.institution ;
     var fromYear = $scope.fromYear ;
     var toYear = $scope.toYear ;
@@ -21,18 +19,19 @@ angular.module('profileBuilder.education', ['ngRoute'])
 
 
   $http.get(appSettings.apiBase + '/getData/'+userId)
-  .success(function(response) {
+ .success(function(response) {
     if(response.success){
       $scope.userData=response.userData;
 
       localStorage.setItem('userDetails',JSON.stringify(response.userData));
       
-      $scope.education = $scope.userData.education
-      $scope.institution = $scope.userData.institution;
-      $scope.fromYear = $scope.userData.fromYear;
-      $scope.toYear = $scope.userData.toYear;
-      $scope.board = $scope.userData.board;
-      $scope.cgpa = $scope.userData.cgpa;
+      //$scope.education = $scope.userData.education;
+
+      // $scope.institution = $scope.userData.institution;
+      // $scope.fromYear = $scope.userData.fromYear;
+      // $scope.toYear = $scope.userData.toYear;
+      // $scope.board = $scope.userData.board;
+      // $scope.cgpa = $scope.userData.cgpa;
 
     }
     else{
@@ -46,11 +45,12 @@ angular.module('profileBuilder.education', ['ngRoute'])
   
 
 $scope.saveEducationDetails = function(){
+  alert($scope.institution);
 $scope.saveData();
 };
 
 $scope.goToEducation = function(){
-  $location.url('/linkedInConnect');
+  $location.url('/education/'+userId);
 
 };
 
@@ -59,20 +59,43 @@ $scope.goToRegistration1 = function(){
 
 };
 
+  $scope.addEducationDetails = function(){
+  alert("aaya");
+
+    var institution = $scope.institution ;
+    var fromYear = $scope.fromYear ;
+    var toYear = $scope.toYear ;
+    var board = $scope.board ;
+    var cgpa = $scope.cgpa ;
+
+    $scope.education.push({'institution':institution,'fromYear':fromYear,'toYear':toYear,'board':board,'cgpa':cgpa});
+    alert(JSON.stringify($scope.education));
+    $scope.institution = "";
+    $scope.fromYear = "";
+    $scope.toYear = "";
+    $scope.board = "";
+    $scope.cgpa = "";
+};
+
 $scope.saveData=function(){
 
     $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
 
     var data = {
+        page:3,
         education : $scope.education
     };
 
-    $http.put(appSettings.apiBase + '/saveDataPage2', data)
+
+    $http.put(appSettings.apiBase + '/saveDataPage', data)
+
+
+    
+
     .success(function(response) {
      if(response.success){
           alert("User Details Updated successfully");
-
         }
         else
         {

@@ -1,10 +1,9 @@
 'use strict';
 angular.module('profileBuilder.registration1', ['ngRoute'])
-.controller('registration1Ctrl',function($scope,$http,$location,$routeParams) {
+.controller('registration1Ctrl',function($scope,$http,$location,$routeParams, appSettings) {
 	var userId = $routeParams.userId;
 
-
-  $http.get('/getData/'+userId)
+  $http.get(appSettings.apiBase + '/getData/'+userId)
   .success(function(response) {
   	if(response.success){
       $scope.userData=response.userData;
@@ -52,7 +51,7 @@ $scope.saveData=function(){
         permanentAddress : $scope.permanentAddress
     };
 
-    $http.put('/saveDataPage1', data)
+    $http.put(appSettings.apiBase + '/saveDataPage1', data)
     .success(function(response) {
      if(response.success){
 					alert("User Details Updated successfully");

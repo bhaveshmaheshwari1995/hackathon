@@ -10,7 +10,9 @@
 		</div>
 		<div
 			class="panel-info col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panelHeading text-center">Your Emergency Contact</div>
+			<div class="panelHeading text-center" ng-controller="breadCrumbCtrl">
+				<div ng-include="'views/templates/breadcrumb.html'"></div>
+			</div>
 			<div class="panel-body">
 				<form class="form-horizontal">
 					<div class="row">
@@ -65,13 +67,15 @@
 
 					<div class="row">
 						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="goToRegistration1()">
-								<span class="glyphicon glyphicon-arrow-left"></span> Back 
+							<button type="submit" class="btn btn-block"
+								ng-click="goToRegistration1()">
+								<span class="glyphicon glyphicon-arrow-left"></span> Back
 							</button>
 						</div>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="saveData2()">
+							<button type="submit" class="btn btn-block"
+								ng-click="saveData2()">
 								Continue <span class="glyphicon glyphicon-arrow-right"></span>
 							</button>
 						</div>
