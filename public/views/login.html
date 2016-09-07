@@ -17,11 +17,11 @@
 <form>
   <div class="form-group">
     <label for="Email1">Email address</label>
-    <input type="email" class="form-control" id="inputEmail" ng-model="userEmail" placeholder="Email">
+    <input type="email" class="form-control" id="inputEmail" ng-model="userEmail" placeholder="Email" required="true">
   </div>
   <div class="form-group">
     <label for="Password1">Password</label>
-    <input type="password" class="form-control" id="password" ng-model="userPassword" placeholder="Password">
+    <input type="password" class="form-control" id="password" ng-model="userPassword" placeholder="Password" required>
   </div>
 
   <button type="submit" class="btn btn-default"  ng-click="authenticate()">Submit</button>

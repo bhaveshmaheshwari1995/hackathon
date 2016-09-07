@@ -27,7 +27,7 @@
  </div>
  <div class="row">
   <div class="form-group col-md-6">
-    <select class="form-control" id="inputEmail" ng-model="code" placeholder="Gender" class="col-md-6">
+    <select class="form-control" id="inputEmail" ng-model="gender" placeholder="Gender" class="col-md-6">
         <option  selected="selected" value = "male">Male</option>
         <option value = "female">Female</option>
       </select>
@@ -39,10 +39,10 @@
  </div>
  <div class="row">
   <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="inputEmail" ng-model="code" placeholder="Mobile Number" required>
+    <input type="Number" class="form-control" id="mobileNumber" ng-model="mobileNumber" placeholder="Mobile Number" required>
   </div>
     <div class="form-group col-md-6">
-    <input type="email" class="form-control" id="inputEmail" ng-model="code" placeholder="Personal Email Address" required>
+    <input type="email" class="form-control" id="email" ng-model="email" placeholder="Personal Email Address" required>
   </div>
  </div>
  <div class="row">
@@ -50,8 +50,8 @@
       <textarea class="form-control" name="currentAddress" rows="2" id="currentAddress" ng-model="currentAddress" placeholder="Current Address (Address1, Address2, City,State,Pincode)" required></textarea>
    </div>
    <div class="row">
-    <div class="checkbox">
-      <label><input type="checkbox" value="">Same as Current Address</label>
+    <div class="form-group checkbox">
+      <label><input type="checkbox" ng-model="check">Same as Current Address</label>
     </div>
   </div>
   <div class="form-group">
@@ -62,10 +62,10 @@
 
  <div class="row">
   <div class="form-group col-md-6">
-    <button type="button" class="btn btn-default col-md-12">Back</button>    
+    <button type="button" class="btn btn-default col-md-12" ng-click="goToLinkedIn()">Back</button>    
   </div>
   <div class="form-group col-md-6" >
-    <button type="button" class="btn btn-default col-md-12">Continue</button>
+    <button type="submit" class="btn btn-default col-md-12" ng-click="saveRegisterationData1()">Continue</button>
   </div>
  </div>
     

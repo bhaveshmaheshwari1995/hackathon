@@ -4,6 +4,11 @@
 angular.module('profileBuilder', [
   'ngRoute',
   'profileBuilder.login',
+  'profileBuilder.FBConnect',
+  'profileBuilder.linkedInConnect',
+  'profileBuilder.registration1',
+  'profileBuilder.registration2',
+  'profileBuilder.education',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 
@@ -17,39 +22,39 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
       templateUrl: './views/newEmployee.html',
       controller: 'newEmployeeCtrl'
       });
-      $routeProvider.when('/FBConnect', {
+      $routeProvider.when('/FBConnect/:userId', {
       templateUrl: './views/FBConnect.html',
-      controller: 'FBConnectCtrl'
+      controller: 'fbCtrl'
       });
-      $routeProvider.when('/linkedInConnect', {
-      templateUrl: './views/linkedInConnect.html',
-      controller: 'linkedInConnectCtrl'
+      $routeProvider.when('/linkedInConnect/:userId', {
+      templateUrl: './views/LinkedInConnect.html',
+      controller: 'linkedInCtrl'
       });
-      $routeProvider.when('/registration1', {
+      $routeProvider.when('/registration1/:userId', {
       templateUrl: './views/Registration_1.html',
-      controller: 'linkedInConnectCtrl'
+      controller: 'registration1Ctrl'
       });
-      $routeProvider.when('/registration2', {
+      $routeProvider.when('/registration2/:userId', {
       templateUrl: './views/Registration_2.html',
-      controller: 'linkedInConnectCtrl'
+      controller: 'registration1Ctrl2'
       });
-      $routeProvider.when('/education', {
+      $routeProvider.when('/education/:userId', {
       templateUrl: './views/Education.html',
-      controller: 'loginCtrl'
+      controller: 'educationCtrl'
       });  
-     $routeProvider.when('/employmentDetails', {
+     $routeProvider.when('/employmentDetails/:userId', {
       templateUrl: './views/employmentDetails.html',
       controller: 'employmentDetailsCtrl'
       });
-     $routeProvider.when('/refVerify', {
+     $routeProvider.when('/refVerify/:userId', {
       templateUrl: './views/refVerify.html',
       controller: 'refVerifyCtrl'
       });
-     $routeProvider.when('/passportDetails', {
+     $routeProvider.when('/passportDetails/:userId', {
       templateUrl: './views/passportDetails.html',
       controller: 'passportDetailsCtrl'
       });
-     $routeProvider.when('/bankDetails', {
+     $routeProvider.when('/bankDetails/:userId', {
       templateUrl: './views/bankDetails.html',
       controller: 'bankDetailsCtrl'
       });
