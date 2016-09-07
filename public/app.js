@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('profileBuilder', [
+var app = angular.module('profileBuilder', [
   'ngRoute',
   'profileBuilder.login',
   'profileBuilder.FBConnect',
@@ -9,9 +9,10 @@ angular.module('profileBuilder', [
   'profileBuilder.registration1',
   'profileBuilder.registration2',
   'profileBuilder.education',
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-
+  'profileBuilder.profile',
+  'profileBuilder.breadCrumb'
+]);
+app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 
     $routeProvider.otherwise({redirectTo: '/login'});
 	 $routeProvider.when('/login', {
@@ -61,3 +62,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
 
 }]);
+app.constant('appSettings', appConfig);

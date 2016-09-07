@@ -1,6 +1,6 @@
 'use strict';
 angular.module('profileBuilder.education', ['ngRoute'])
-.controller('educationCtrl',function($scope,$http,$location,$routeParams) {
+.controller('educationCtrl',function($scope,$http,$location,$routeParams,appSettings) {
   var userId = $routeParams.userId;
   $scope.education=[];
 
@@ -20,7 +20,7 @@ angular.module('profileBuilder.education', ['ngRoute'])
 };
 
 
-  $http.get('/getData/'+userId)
+  $http.get(appSettings.apiBase + '/getData/'+userId)
   .success(function(response) {
     if(response.success){
       $scope.userData=response.userData;
@@ -68,7 +68,7 @@ $scope.saveData=function(){
         education : $scope.education
     };
 
-    $http.put('/saveDataPage2', data)
+    $http.put(appSettings.apiBase + '/saveDataPage2', data)
     .success(function(response) {
      if(response.success){
           alert("User Details Updated successfully");
