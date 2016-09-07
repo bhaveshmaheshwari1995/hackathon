@@ -25,7 +25,7 @@ angular.module('profileBuilder.passportDetails', ['ngRoute'])
   });
   
 
-$scope.saveRegisterationData1 = function(){
+$scope.goToBankDetails = function(){
 $scope.saveData();
 };
 
@@ -35,18 +35,14 @@ $scope.goToLinkedIn = function(){
 };
 
 $scope.saveData=function(){
-
+alert("aaya");
     $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
     var data = {
-        firstName : $scope.firstName,
-        lastName : $scope.lastName,
-        gender : $scope.gender,
-        date : $scope.date,
-        mobileNumber : $scope.mobileNumber,
-        email : $scope.email,
-        currentAddress : $scope.currentAddress,
-        permanentAddress : $scope.permanentAddress
+        passportNumber : $scope.passportNumber,
+        placeOfIssue : $scope.passportPlace,
+        validFrom : $scope.validFrom,
+        validTill : $scope.validTill
     };
 
     $http.put('/saveDataPage1', data)
