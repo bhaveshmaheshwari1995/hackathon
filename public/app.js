@@ -9,6 +9,7 @@ angular.module('profileBuilder', [
   'profileBuilder.registration1',
   'profileBuilder.registration2',
   'profileBuilder.education',
+  'profileBuilder.passportDetails',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 

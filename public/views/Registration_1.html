@@ -1,76 +1,96 @@
 <html>
 <head>
-    <title>login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   
+<title>login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="row" align="center">
-<H1>Aspire Logo</H1>
-</div>
-<div class="col-md-4"></div>
-<div class="col-md-4">
-  <div class="row" align="center">
-<H3>Your Profile details</H3>
-</div>
-  <div class="row" align="center">
-</div>
-<form>
-<div class="row">
-  <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="firstName" ng-model="firstName" placeholder="First Name" required>
-  </div>
-    <div class="form-group col-md-6">
-    <input type="text" class="form-control" id="lastName" ng-model="lastName" placeholder="Last Name" required>
-  </div>
- </div>
- <div class="row">
-  <div class="form-group col-md-6">
-    <select class="form-control" id="inputEmail" ng-model="gender" placeholder="Gender" class="col-md-6">
-        <option  selected="selected" value = "male">Male</option>
-        <option value = "female">Female</option>
-      </select>
-    
-  </div>
-    <div class="form-group col-md-6" >
-    <input type="Date" class="form-control" id="date" ng-model="date" placeholder="Date" class="col-md-6" required>
-  </div>
- </div>
- <div class="row">
-  <div class="form-group col-md-6">
-    <input type="Number" class="form-control" id="mobileNumber" ng-model="mobileNumber" placeholder="Mobile Number" required>
-  </div>
-    <div class="form-group col-md-6">
-    <input type="email" class="form-control" id="email" ng-model="email" placeholder="Personal Email Address" required>
-  </div>
- </div>
- <div class="row">
-   <div class="form-group">
-      <textarea class="form-control" name="currentAddress" rows="2" id="currentAddress" ng-model="currentAddress" placeholder="Current Address (Address1, Address2, City,State,Pincode)" required></textarea>
-   </div>
-   <div class="row">
-    <div class="form-group checkbox">
-      <label><input type="checkbox" ng-model="check">Same as Current Address</label>
-    </div>
-  </div>
-  <div class="form-group">
-      <textarea class="form-control" name="permanentAddress" rows="2" id="permanentAddress" ng-model="permanentAddress" placeholder="Permanent Address (Address1, Address2, City,State,Pincode)" required></textarea>
-   </div>
- </div>
+	<div class="container margin-top-80">
+		<div class="row" align="center">
+			<img src="images/aspire-logo.jpg">
+		</div>
+		<div
+			class="panel-info col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panelHeading text-center">Your Profile details</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<input type="text" class="form-control" id="firstName"
+								ng-model="firstName" placeholder="First Name" required>
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="text" class="form-control" id="lastName"
+								ng-model="lastName" placeholder="Last Name" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<select class="form-control" id="inputEmail" ng-model="gender"
+								placeholder="Gender" class="col-md-6">
+								<option selected="selected" value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="Date" class="form-control" id="date" ng-model="date"
+								placeholder="Date" class="col-md-6" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<input type="Number" class="form-control" id="mobileNumber"
+								ng-model="mobileNumber" placeholder="Mobile Number" required>
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="email" class="form-control" id="email"
+								ng-model="email" placeholder="Personal Email Address" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<textarea class="form-control" name="currentAddress" rows="2"
+								id="currentAddress" ng-model="currentAddress"
+								placeholder="Current Address (Address1, Address2, City,State,Pincode)"
+								required></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-11 form-group">
+							<div class="checkbox">
+								<label><input type="checkbox" ng-model="check">Same as
+									Current Address</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<textarea class="form-control" name="permanentAddress" rows="2"
+								id="permanentAddress" ng-model="permanentAddress"
+								placeholder="Permanent Address (Address1, Address2, City,State,Pincode)"
+								required></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="goToLinkedIn()">
+								<span class="glyphicon glyphicon-arrow-left"></span> Back 
+							</button>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="saveRegisterationData1()">
+								Continue <span class="glyphicon glyphicon-arrow-right"></span>
+							</button>
+						</div>
+					</div>
 
-
- <div class="row">
-  <div class="form-group col-md-6">
-    <button type="button" class="btn btn-default col-md-12" ng-click="goToLinkedIn()">Back</button>    
-  </div>
-  <div class="form-group col-md-6" >
-    <button type="submit" class="btn btn-default col-md-12" ng-click="saveRegisterationData1()">Continue</button>
-  </div>
- </div>
-    
-</form>
-</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

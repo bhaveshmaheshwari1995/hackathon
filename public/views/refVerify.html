@@ -1,58 +1,71 @@
 <html>
 <head>
-    <title>login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   
+<title>login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="row" align="center">
-<H1>Aspire Logo</H1>
-</div>
-<div class="col-md-4"></div>
-<div class="col-md-4">
-  <div class="row" align="center">
-<H3>Your References For Verification</H3>
-</div>
-  <div class="row" align="center">
-</div>
-<form>
-<div class="row">
-  <div class="form-group">
-    <input type="text" class="form-control" id="refName" ng-model="refName" placeholder="Reference Full Name">
-  </div>
- </div>
+	<div class="container margin-top-80">
+		<div class="row" align="center">
+			<img src="images/aspire-logo.jpg">
+		</div>
+		<div
+			class="panel-info col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panelHeading text-center">Your References for
+				Verification</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<input type="text" class="form-control" id="refName"
+								ng-model="refName" placeholder="Reference Full Name">
+						</div>
+					</div>
 
- <div class="row">
-  <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="refDesignation" ng-model="refDesignation" placeholder="Current Designation/ Title">
-  </div>
-  <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="refName" ng-model="refName" placeholder="Contact info email/ mobile">
-  </div>
- </div>
-<div class="row">
-  <div class="form-group">
-    <input type="text" class="form-control" id="refDetail" ng-model="refDetail" placeholder="How do this person know about you">
-  </div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<input type="text" class="form-control" id="refDesignation"
+								ng-model="refDesignation"
+								placeholder="Current Designation/ Title">
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="text" class="form-control" id="refName"
+								ng-model="refName" placeholder="Contact info email/ mobile">
+						</div>
+					</div>
 
- <div class="row">
-    <div class="form-group col-md-6" >
-        <button type="button" class="btn btn-default col-md-12">Add More</button>
-  </div>
- </div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<input type="text" class="form-control" id="refDetail"
+								ng-model="refDetail"
+								placeholder="How do this person know about you">
+						</div>
+					</div>
+					<div class="row margin">
+						<div class="col-xs-offset-3  col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="">
+								Add More <span class="glyphicon glyphicon-plus"></span>
+							</button>
+						</div>
+					</div>
 
- <div class="row">
-  <div class="form-group col-md-6">
-    <button type="button" class="btn btn-default col-md-12">Back</button>    
-  </div>
-  <div class="form-group col-md-6" >
-    <button type="button" class="btn btn-default col-md-12">Continue</button>
-  </div>
- </div>
-    
-</form>
-</div>
+					<div class="row margin">
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="">
+								Back <span class="glyphicon glyphicon-arrow-left"></span>
+							</button>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="">
+								Continue <span class="glyphicon glyphicon-arrow-right"></span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
