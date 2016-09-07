@@ -1,66 +1,85 @@
 <html>
 <head>
-    <title>login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="row" align="center">
-<H1>Aspire Logo</H1>
-</div>
-<div class="col-md-4"></div>
-<div class="col-md-4">
-  <div class="row" align="center">
-<H3>Your Profile details</H3>
-</div>
-  <div class="row" align="center">
-</div>
-<form>
-<div class="row">
-  <div class="form-group">
-    <input type="email" class="form-control" id="emergencyName1" ng-model="emergencyName1" placeholder="Emergency Prmary Contact 1 Name">
-  </div>
- </div>
+	<div class="container margin-top-80">
+		<div class="row" align="center">
+			<img src="images/aspire-logo.jpg">
+		</div>
+		<div
+			class="panel-info col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panelHeading text-center">Your Emergency Contact</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<input type="text" class="form-control" id="emergencyName1"
+								ng-model="emergencyName1"
+								placeholder="Emergency Primary Contact 1 Name">
+						</div>
+					</div>
 
- <div class="row">
-  <div class="form-group col-md-6">
-    <select class="form-control" id="relationshipStatus1" ng-model="relationshipStatus1" placeholder="Relationship Status" class="col-md-6">
-        <option  selected="selected" value = "Spouse">Spouse</option>
-        <option value = "Parent">Parent</option>
-      </select>
-  </div>
-    <div class="form-group col-md-6" >
-    <input type="Number" class="form-control" id="emergencyMobile1" ng-model="emergencyMobile1" placeholder="Contact Mobile/Telephone" class="col-md-6">
-  </div>
- </div>
-<BR>
-<div class="row">
-  <div class="form-group">
-    <input type="email" class="form-control" id="emergencyName2" ng-model="emergencyName2" placeholder="Emergency Prmary Contact 2 Name">
-  </div>
- <div class="row">
-  <div class="form-group col-md-6">
-    <select type="Gender" class="form-control" id="relationshipStatus2" ng-model="relationshipStatus2" placeholder="Relationship Status" class="col-md-6">
-        <option  selected="selected" value = "Spouse">Spouse</option>
-        <option value = "Parent">Parent</option>
-      </select>
-  </div>
-    <div class="form-group col-md-6" >
-    <input type="Number" class="form-control" id="emergencyMobile2" ng-model="emergencyMobile2" placeholder="Contact Mobile/Telephone" class="col-md-6">
-  </div>
- </div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<select class="form-control" id="relationshipStatus1"
+								ng-model="relationshipStatus1" placeholder="Relationship Status"
+								class="col-md-6">
+								<option selected="selected" value="Spouse">Spouse</option>
+								<option value="Parent">Parent</option>
+							</select>
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="Number" class="form-control" id="emergencyMobile1"
+								ng-model="emergencyMobile1"
+								placeholder="Contact Mobile/Telephone" class="col-md-6">
+						</div>
+					</div>
 
- <div class="row">
-  <div class="form-group col-md-6">
-    <button type="button" class="btn btn-default col-md-12" ng-click="goToRegistration1()">Back</button>    
-  </div>
-  <div class="form-group col-md-6" >
-    <button type="button" class="btn btn-default col-md-12" ng-click="saveData2()">Continue</button>
-  </div>
- </div>
-    
-</form>
-</div>
+					<div class="row">
+						<div class="col-xs-12 form-group">
+							<input type="text" class="form-control" id="emergencyName2"
+								ng-model="emergencyName2"
+								placeholder="Emergency Primary Contact 2 Name">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<select class="form-control" id="relationshipStatus2"
+								ng-model="relationshipStatus2" placeholder="Relationship Status"
+								class="col-md-6">
+								<option selected="selected" value="Spouse">Spouse</option>
+								<option value="Parent">Parent</option>
+							</select>
+						</div>
+						<div class="col-xs-1 form-group"></div>
+						<div class="col-xs-6 form-group">
+							<input type="Number" class="form-control" id="emergencyMobile2"
+								ng-model="emergencyMobile2"
+								placeholder="Contact Mobile/Telephone" class="col-md-6">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="goToRegistration1()">
+								<span class="glyphicon glyphicon-arrow-left"></span> Back 
+							</button>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-5">
+							<button type="submit" class="btn btn-block" ng-click="saveData2()">
+								Continue <span class="glyphicon glyphicon-arrow-right"></span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
