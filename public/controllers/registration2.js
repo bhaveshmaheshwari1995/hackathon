@@ -10,12 +10,12 @@ angular.module('profileBuilder.registration2', ['ngRoute'])
     if(response.success){
       $scope.userData=response.userData;
       localStorage.setItem('userDetails',JSON.stringify(response.userData));
-      $scope.emergencyName1 = $scope.userData.emergencyName1;
-      $scope.relationshipStatus1 = $scope.userData.relationshipStatus1;
-      $scope.emergencyMobile1 = $scope.userData.emergencyMobile1;
-      $scope.emergencyName2 = $scope.userData.emergencyName2;
-      $scope.relationshipStatus2 = $scope.userData.relationshipStatus2;
-      $scope.emergencyMobile2 = $scope.userData.emergencyMobile2;
+      $scope.emergencyName1 = $scope.userData.emergencyContact[0].name;
+      $scope.relationshipStatus1 = $scope.userData.emergencyContact[0].relation;
+      $scope.emergencyMobile1 = $scope.userData.emergencyContact[0].contactNumber;
+      $scope.emergencyName2 = $scope.userData.emergencyContact[1].name;
+      $scope.relationshipStatus2 = $scope.userData.emergencyContact[1].relation;
+      $scope.emergencyMobile2 = $scope.userData.emergencyContact[1].contactNumber;
 
     }
     else{
@@ -29,7 +29,6 @@ angular.module('profileBuilder.registration2', ['ngRoute'])
   
 
 $scope.saveData2 = function(){
-  alert("Helo");
 $scope.saveData();
 };
 

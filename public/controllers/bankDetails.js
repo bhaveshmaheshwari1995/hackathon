@@ -1,7 +1,7 @@
 
  'use strict';
-angular.module('profileBuilder.passportDetails', ['ngRoute'])
-.controller('passportDetailsCtrl',function($scope,$http,$location,$routeParams) {
+angular.module('profileBuilder.bankDetails', ['ngRoute'])
+.controller('bankDetailsCtrl',function($scope,$http,$location,$routeParams) {
   var userId = $routeParams.userId;
 
   $http.get('/getData/'+userId)
@@ -10,10 +10,11 @@ angular.module('profileBuilder.passportDetails', ['ngRoute'])
       $scope.userData=response.userData;
       localStorage.setItem('userDetails',JSON.stringify(response.userData));
 
-      $scope.passportNumber = response.userData.passportDetails.passportNumber;
-      $scope.passportPlace = response.userData.passportDetails.passportPlace;
-      $scope.validFrom = response.userData.passportDetails.validFrom;
-      $scope.validTo = response.userData.passportDetails.validTo;
+      $scope.bankName = response.userData.bankDetails.bankName;
+      $scope.accountNumber = response.userData.bankDetails.accountNumber;
+      $scope.branchName = response.userData.bankDetails.branchName;
+      $scope.accountType = response.userData.bankDetails.accountType;
+      $scope.UANnumber = response.userData.bankDetails.UANnumber;
       
     }
     else{
@@ -23,34 +24,33 @@ angular.module('profileBuilder.passportDetails', ['ngRoute'])
   .error(function(err) {
     alert('Error2: ' + err);
   });
-  
+ 
+$scope.goToPassportDetails = function(){
+  $location.url('/passportDetails/'+userId);
 
-
-$scope.goToBankDetails = function(){
-  $location.url('/bankDetails/'+userId);
 };
 
 $scope.saveData=function(){
+  alert("save called");
     $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
-    var passportDetails = [
+var bankDetails = [
     {
-        passportNumber : $scope.passportNumber,
-        placeOfIssue : $scope.passportPlace,
-        validFrom : $scope.validFrom,
-        validTill : $scope.validTill
+        bankName : $scope.passportNumber,
+        accountNumber : $scope.passportPlace,
+        branchName : $scope.validFrom,
+        UANnumber : $scope.validTill
     }
 ];
 
     var data = {
-        passportDetails : passportDetails
+        bankDetails : bankDetails
     };
 
     $http.put('/saveDataPage', data)
     .success(function(response) {
      if(response.success){
           alert("User Details Updated successfully");
-          goToBankDetails();
         }
         else
         {

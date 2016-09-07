@@ -11,6 +11,7 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.education',
   'profileBuilder.breadCrumb',
   'profileBuilder.passportDetails',
+  'profileBuilder.bankDetails',
 ]);
 app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/login'});

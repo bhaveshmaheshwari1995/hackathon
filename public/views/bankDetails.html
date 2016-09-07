@@ -41,14 +41,14 @@
 
 					<div class="row">
 						<div class="form-group col-xs-5">
-							<input type="text" class="form-control" id="uan" ng-model="uan"
+							<input type="text" class="form-control" id="UANnumber" ng-model="UANnumber"
 								placeholder="UAN(if you have already)" required>
 						</div>
 					</div>
 
 					<div class="row margin">
 						<div class="col-xs-offset-3  col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="">
+							<button type="submit" class="btn btn-block" ng-click="saveData()">
 								Skip For Now <span class="glyphicon glyphicon-arrow-right"></span>
 							</button>
 						</div>
@@ -56,13 +56,13 @@
 
 					<div class="row margin">
 						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="">
+							<button type="submit" class="btn btn-block" ng-click="goToPassportDetails()">
 								<span class="glyphicon glyphicon-arrow-left"></span> Back
 							</button>
 						</div>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block" ng-click="">
+							<button type="submit" class="btn btn-block" ng-click="saveData()">
 								Continue <span class="glyphicon glyphicon-arrow-right"></span>
 							</button>
 						</div>
