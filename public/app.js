@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 var app = angular.module('profileBuilder', [
-  'ngRoute',
+  'ui.router',
   'profileBuilder.login',
   'profileBuilder.FBConnect',
   'profileBuilder.linkedInConnect',
@@ -13,51 +13,70 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.passportDetails',
   'profileBuilder.bankDetails',
 ]);
-app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-	$routeProvider.otherwise({redirectTo: '/login'});
-	 $routeProvider.when('/login', {
-      templateUrl: './views/login.html',
-      controller: 'loginCtrl'
-      });  
-     $routeProvider.when('/newEmployee', {
-      templateUrl: './views/newEmployee.html',
-      controller: 'newEmployeeCtrl'
-      });
-      $routeProvider.when('/FBConnect/:userId', {
-      templateUrl: './views/FBConnect.html',
-      controller: 'fbCtrl'
-      });
-      $routeProvider.when('/linkedInConnect/:userId', {
-      templateUrl: './views/LinkedInConnect.html',
-      controller: 'linkedInCtrl'
-      });
-      $routeProvider.when('/registration1/:userId', {
-      templateUrl: './views/Registration_1.html',
-      controller: 'registration1Ctrl'
-      });
-      $routeProvider.when('/registration2/:userId', {
-      templateUrl: './views/Registration_2.html',
+app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
+	
+  $urlRouterProvider.otherwise('/login');
+  
+  $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: './views/login.html',
+    controller: 'loginCtrl'
+  })
+  .state('newEmployee',{
+    url:'/newEmployee',
+    templateUrl: './views/newEmployee.html',
+    controller: 'newEmployeeCtrl'
+  })
+  .state('FBConnect',{
+    url:'/FBConnect/:userId',
+    templateUrl: './views/FBConnect.html',
+    controller: 'fbCtrl'
+  })
+  .state('linkedInConnect',{
+    url:'/linkedInConnect/:userId',
+    templateUrl: './views/LinkedInConnect.html',
+    controller: 'linkedInCtrl'
+  })
+  .state('registration1',{
+    url:'/registration1/:userId',
+    templateUrl: './views/Registration_1.html',
+    controller: 'registration1Ctrl'
+  })
+  .state('registration2',{
+    url:'/registration2/:userId',
+    templateUrl: './views/Registration_2.html',
       controller: 'registration1Ctrl2'
-      });
-      $routeProvider.when('/education/:userId', {
-      templateUrl: './views/Education.html',
+  })
+  .state('education',{
+    url:'/education/:userId',
+    templateUrl: './views/Education.html',
       controller: 'educationCtrl'
-      });  
-     $routeProvider.when('/employmentDetails/:userId', {
-      templateUrl: './views/employmentDetails.html',
-      controller: 'employmentDetailsCtrl'
-      });
-     $routeProvider.when('/refVerify/:userId', {
-      templateUrl: './views/refVerify.html',
+  })
+  .state('employmentDetails',{
+    url:'/employmentDetails/:userId',
+    templateUrl: './views/employmentDetails.html',
+    controller: 'employmentDetailsCtrl'
+  })
+  .state('refVerify',{
+    url:'/refVerify/:userId',
+    templateUrl: './views/refVerify.html',
       controller: 'refVerifyCtrl'
-      });
-     $routeProvider.when('/passportDetails/:userId', {
-      templateUrl: './views/passportDetails.html',
+  })
+  .state('passportDetails',{
+    url:'/passportDetails/:userId',
+    templateUrl: './views/passportDetails.html',
       controller: 'passportDetailsCtrl'
-      });
-     $routeProvider.when('/bankDetails/:userId', {
-      templateUrl: './views/bankDetails.html',
+  })
+  .state('bankDetails',{
+    url:'/bankDetails/:userId',
+    templateUrl: './views/bankDetails.html',
       controller: 'bankDetailsCtrl'
-      });
-}]);
+  })
+  .state('genOBCode',{
+    url:'/genOBCode/:userId',
+    templateUrl: './views/genOBCode.html',
+      controller: 'genOBCodeCtrl'
+  })
+});
 app.constant('appSettings', appConfig);
