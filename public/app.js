@@ -17,10 +17,10 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.OBForms',
   'profileBuilder.refVerify',
   'profileBuilder.HRMenu',
-    'profileBuilder.newEmployee',
+  'profileBuilder.newEmployee',
   'profileBuilder.genOBCode',
-    'profileBuilder.profile',
-
+  'profileBuilder.profile',
+  'profileBuilder.reports'
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -116,6 +116,11 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     url:'/profile/complete',
     templateUrl: './views/lastPage.html'
   })
+  .state('report',{
+    url:'/report',
+    templateUrl: './views/report.html',
+    controller: 'reportsCtrl'
+  })  
 });
 
 app.run(function($rootScope, $state) {
