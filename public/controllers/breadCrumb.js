@@ -21,7 +21,7 @@ angular.module('profileBuilder.breadCrumb', []).controller('breadCrumbCtrl', fun
         'name': 'Bank & IT',
         'path': 'bank'
     }];
-$scope.activeMenu = $scope.menuItems[5].name;
+$scope.activeMenu = $scope.menuItems[0].name;
    $scope.setActive = function(menuItem) {
     $scope.activeMenu = menuItem;
  }

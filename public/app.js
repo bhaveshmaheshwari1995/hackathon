@@ -86,17 +86,17 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
       controller: 'profileCtrl'
   })
   .state('genOBCode',{
-    url:'/genOBCode/:userId',
+    url:'/genOBCode',
     templateUrl: './views/genOBCode.html',
     controller: 'genOBCodeCtrl'
   })
   .state('OBForms',{
-    url:'/OBForms/:userId',
+    url:'/OBForms',
     templateUrl: './views/OBForm.html',
     controller: 'OBFormsCtrl'
   })
   .state('employees',{
-    url:'/employees/:userId',
+    url:'/employees',
     templateUrl: './views/employees.html',
     controller: 'employeesCtrl'
   })

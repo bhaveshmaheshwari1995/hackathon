@@ -19,26 +19,21 @@
 								<div class="col-xs-12 col-md-6 form-group">
 									<input type="text" class="form-control" id="institution"
 										ng-model="educationDetail.institution"
-										placeholder="School/Institution">
+										placeholder="School/Institution" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-6 form-group">
-									<select class="form-control" id="fromYear"
-										ng-model="educationDetail.fromYear" placeholder="From Year"
-										class="col-md-6">
-										<option selected="selected" value="2000">2000</option>
-										<option value="2001">2001</option>
-									</select>
+									<input type="number" class="form-control" id="fromYear"
+                                                                                ng-model="educationDetail.fromYear"
+                                                                                placeholder="From Year" min=1950 max=2016 required>
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-6 form-group">
-									<select class="form-control" id="toYear"
-										ng-model="educationDetail.toYear" placeholder="To Year"
-										class="col-md-6">
-										<option selected="selected" value="2010">2010</option>
-										<option value="2011">2011</option>
+									<input type="number" class="form-control" id="fromTo"
+                                                                                ng-model="educationDetail.toYear"
+                                                                                placeholder="To Year" min=1950 max=2016 required>
 									</select>
 								</div>
 							</div>
@@ -47,14 +42,14 @@
 								<div class="col-xs-12 col-md-6 form-group">
 									<input type="text" class="form-control" id="board"
 										ng-model="educationDetail.board"
-										placeholder="Board/ University">
+										placeholder="Board/ University" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-6 form-group">
 									<input type="Number" class="form-control" id="cgpa"
-										ng-model="educationDetail.cgpa" placeholder="%/CGPA">
+										ng-model="educationDetail.cgpa" min=1 max=100 placeholder="%/CGPA" required>
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-6 form-group">

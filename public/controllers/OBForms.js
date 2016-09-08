@@ -1,37 +1,25 @@
 'use strict';
 angular.module('profileBuilder.OBForms', ['ngRoute'])
 
-.controller('OBFormsCtrl',function($scope,$http,$location,$stateParams, appSettings) {
+.controller('OBFormsCtrl', function($scope, $http, $location, $stateParams, appSettings, $state) {
 
-	var userId = $stateParams.userId;
-
-  $scope.OBs=[{'name':"Bhavesh","id":"1","email":"bhaveshasa@gmail.com"},
-                 {'name':"Ameya","id":"2","email":"ameya@gmail.com"}];
-
-
-  $http.get(appSettings.apiBase + '/getOBData/'+userId)
-  .success(function(response) {
-  	if(response.success){
-      $scope.OBs = response.userData;
-
-  	}
-  	else{
-  		alert('Error1: ' + err);
-
-  	}
-  })
-  .error(function(err) {
-    alert('Error2: ' + err);
-  });
-  
-
-$scope.goToProfile = function(id){
-  $location.url('/profile/'+userId);
-
-};
-
-});  
+    $http.get(appSettings.apiBase + '/list/1/100')
+        .success(function(response) {
+            if (response.success) {
+                $scope.OBs = response.data;
+            } else {
+              var error = new AppError(response, $scope);
+              $scope.errorMessage = error.getErrorMessage();
+            }
+        })
+        .error(function(response) {
+          var error = new AppError(response, $scope);
+          $scope.errorMessage = error.getErrorMessage();
+        });
 
 
+    $scope.goToProfile = function(id) {
+        $state.go('profile', {userId: id});
+    };
 
-
+});

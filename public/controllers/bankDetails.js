@@ -8,7 +8,7 @@ angular.module('profileBuilder.bankDetails', ['ngRoute'])
                 .success(function(response) {
                     if (response.success) {
                         $scope.bankDetail = response.data;
-                        if (!$scope.bankDetail) {
+                        if (! $scope.bankDetail.length) {
                             $scope.bankDetail = {};
                         }
                     } else {

@@ -19,27 +19,21 @@
 								<div class="col-xs-6 form-group">
 									<input type="text" class="form-control" id="previousCompanyName"
 										ng-model="employmentDetail.previousCompanyName"
-										placeholder="Previous Company">
+										placeholder="Previous Company" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-12 col-md-6 form-group">
-									<select class="form-control" id="fromYear"
-										ng-model="employmentDetail.fromYear" placeholder="From Year"
-										class="col-md-6">
-										<option selected="selected" value="2000">2000</option>
-										<option value="2001">2001</option>
-									</select>
+									<input type="number" class="form-control" id="fromYear"
+                                                                                ng-model="educationDetail.fromYear"
+                                                                                placeholder="From Year" min=1950 max=2016 required>
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-12 col-md-6 form-group">
-									<select class="form-control" id="toYear"
-										ng-model="employmentDetail.toYear" placeholder="To Year"
-										class="col-md-6">
-										<option selected="selected" value="2010">2010</option>
-										<option value="2011">2011</option>
-									</select>
+									<input type="number" class="form-control" id="toYear"
+                                                                                ng-model="educationDetail.toYear"
+                                                                                placeholder="To Year" min=1950 max=2016 required>
 								</div>
 							</div>
 
@@ -47,7 +41,7 @@
 								<div class="col-xs-6 form-group">
 									<input type="text" class="form-control" id="designation"
 										ng-model="employmentDetail.designation"
-										placeholder="Designation/ Title">
+										placeholder="Designation/ Title" required>
 										<input type="hidden" class="form-control" id="id"
 										ng-model="employmentDetail._id">
 								</div>

@@ -5,54 +5,56 @@
 </head>
 <body>
 	<div class="container margin-top-20">
-	<div ng-include="'views/templates/header.html'"></div>
-	<div ng-include="'views/templates/hrmenu.html'" class='margin-top-20'></div>
-        <div class="row">
-		<div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center margin-top-20">
-			<div class="panel panel-primary">
-                                <!--col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2"-->
-                                <div class="panel-heading text-center">Onboard New Aspirians</div>
+		<div ng-include="'views/templates/header.html'"></div>
+		<div ng-include="'views/templates/hrmenu.html'" class='margin-top-20'></div>
+		<div class="row">
+			<div
+				class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center margin-top-20">
+				<div class="panel panel-primary">
+					<!--col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2"-->
+					<div class="panel-heading text-center">Onboard New Aspirians</div>
 
-			<div class="panel-body">
-				<form class="form-horizontal">
-						<div class="col-xs-12 input-group">
-							<input type="email"
-								class="form-control" id="inputEmail" ng-model="userEmail"
-								placeholder="search" required="true">
-						</div>
-					
-					<div class='margin-top-20'>
-						<table class="table table-bordered table-striped" >
-						    <thead class="thead-inverse">
-						      <tr>
-						        <th>OB Code</th>
-						        <th>Name</th>
-						        <th>View</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						    <tr ng-repeat = "OB in OBs " >
-						        <td>{{OB.name}}</td>
-						        <td>{{OB.email}}</td>
-						        <td ng-click= "goToProfile(OB.id)">View</td>
-						      </tr>
-						      <!-- <tr dir-paginate = "OB in OBs | itemsPerPage: 1" >
+					<div class="panel-body">
+						<form class="form-horizontal">
+							<div class="col-xs-12 input-group">
+								<input type="text" class="form-control" ng-model="searchKey.$" placeholder="Search...">
+							</div>
+
+							<div class='margin-top-20'>
+								<table class="table table-bordered table-striped">
+									<thead class="thead-inverse">
+										<tr>
+											<th>OB Code</th>
+											<th>Name</th>
+											<th>View</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="OB in OBs | filter:searchKey">
+											<td>{{OB.uniqueId}}</td>
+											<td>{{OB.firstName}} {{OB.lastName }}</td>
+											<td ng-click="goToProfile(OB._id)">View</td>
+										</tr>
+										<!-- <tr dir-paginate = "OB in OBs | itemsPerPage: 1" >
 						        <td>{{OB.name}}</td>
 						        <td>{{OB.email}}</td>
 						        <td ng-click= "goToProfile(OB.id)">View</td>
 						      </tr> -->
-						    </tbody>
-						  </table>
-						  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/dirPagination.tpl.html"></dir-pagination-controls>
+									</tbody>
+								</table>
+								<dir-pagination-controls boundary-links="true"
+									on-page-change="pageChangeHandler(newPageNumber)"
+									template-url="/dirPagination.tpl.html"></dir-pagination-controls>
 
+							</div>
+
+						</form>
 					</div>
-					
-				</form>
+				</div>
 			</div>
-		</div>	
 		</div>
 	</div>
-<div ng-include="'views/templates/footer.html'"></div>
+	<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>

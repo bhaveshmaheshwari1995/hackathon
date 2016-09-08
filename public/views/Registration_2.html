@@ -17,8 +17,7 @@
 							<div class="row">
 								<div class="col-xs-12 col-md-6 form-group">
 									<input type="text" class="form-control" id="name"
-										ng-model="emergency.name"
-										placeholder="Emergency Contact Name">
+										ng-model="emergency.name" placeholder="Emergency Contact Name" required>
 								</div>
 							</div>
 
@@ -26,16 +25,19 @@
 								<div class="col-xs-12 col-md-6 form-group">
 									<select class="form-control" id="relation"
 										ng-model="emergency.relation"
-										placeholder="Relationship Status" class="col-md-6">
+										placeholder="Relationship Status" class="col-md-6" required>
 										<option selected="selected" value="Spouse">Spouse</option>
 										<option value="Parent">Parent</option>
+										<option value="Sibling">Sibling</option>
 									</select>
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-12 col-md-6 form-group">
 									<input type="text" class="form-control" id="contactNumber"
 										ng-model="emergency.contactNumber"
-										placeholder="Contact Mobile/Telephone" class="col-md-6">
+										placeholder="Contact Mobile/Telephone" class="col-md-6" required>
+									<input type="hidden" class="form-control" id="id"
+										ng-model="emergency._id">
 								</div>
 							</div>
 
