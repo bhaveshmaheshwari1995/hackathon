@@ -10,7 +10,7 @@ angular.module('profileBuilder.newEmployee', ['ngRoute']).controller(
                         localStorage.setItem('token', response.token);
                         localStorage.setItem('id', response.id);
                         localStorage.setItem('newUser', 'true');
-                        $state.go('FBConnect', {user_id: localStorage.getItem('id')});
+                        $state.go('linkedInConnect', {user_id: localStorage.getItem('id')});
                     } else {
                         var error = new AppError(response, $scope);
                         $scope.errorMessage = error.getErrorMessage();

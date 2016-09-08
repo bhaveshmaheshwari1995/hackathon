@@ -6,7 +6,10 @@
 <body>
 	<div class="container margin-top-20">
 		<div ng-include="'views/templates/header.html'"></div>
-		<div ng-include="'views/templates/hrmenu.html'" class='margin-top-20'></div>
+		<div class="row" ng-controller="breadCrumbCtrl">
+			<div ng-include="'views/templates/hrmenu.html'" class='margin-top-20'
+				ng-init="activeMenu='Search Employee'"></div>
+		</div>
 		<div class="row">
 			<div
 				class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-1 text-center margin-top-20">

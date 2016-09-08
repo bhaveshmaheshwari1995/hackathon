@@ -1,5 +1,5 @@
 angular.module('profileBuilder.breadCrumb', []).controller('breadCrumbCtrl', function($scope) {
-  $scope.menuItems = [{
+    $scope.menuItems = [{
         'name': 'Basic',
         'path': 'basic'
     }, {
@@ -21,7 +21,20 @@ angular.module('profileBuilder.breadCrumb', []).controller('breadCrumbCtrl', fun
         'name': 'Bank & IT',
         'path': 'bank'
     }];
-   $scope.setActive = function(menuItem) {
-    $scope.activeMenu = menuItem;
- }
+    $scope.HRMenuItems = [{
+        'name': 'Generate OB Code',
+        'path': 'genOBCode'
+    }, {
+        'name': 'OB Forms',
+        'path': 'OBForms'
+    }, {
+        'name': 'Search Employee',
+        'path': 'employees'
+    }, {
+        'name': 'Reports',
+        'path': 'report'
+    }];
+    $scope.setActive = function(menuItem) {
+        $scope.activeMenu = menuItem;
+    }
 });

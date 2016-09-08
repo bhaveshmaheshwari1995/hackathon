@@ -3,7 +3,7 @@ angular.module('profileBuilder.employees', ['ngRoute'])
 
 .controller('employeesCtrl', function($scope, $http, $location, $stateParams, appSettings, $state) {
 
-    $http.get(appSettings.apiBase + '/list/1/100')
+    $http.get(appSettings.apiBase + '/list/1/100/Verified')
         .success(function(response) {
             if (response.success) {
                 $scope.employees = response.data;
