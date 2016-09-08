@@ -1,99 +1,107 @@
 'use strict';
-angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationCtrl',
-		function($scope, $http, $location, $routeParams, appSettings) {
-			$scope.get = function () {
-				
-				$http.get(appSettings.apiBase + '/getData').success(
-						function(response) {
-							if (response.success) {
-								$scope.detailsList = [{ 
-									'school': 'asdf', 
-									'fromYear': '2000', 
-									'toYear':'2010',
-									'board': 'asdf',
-									'cgpa': '12',
-									'course': 'sslc'}]; // response data
-							if ($scope.detailsList) {
-								$scope.showTable = true;
-								$scope.showForm = false;
-							} else {
-								$scope.showTable = false;
-								$scope.showForm = true;
-							}
+angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtrl',
+    function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
+        var isNew;
+        $scope.get = function() {
+            $http.get(appSettings.apiBase + '/' + userId + '/Education').success(
+                function(response) {
+                    if (response.success) {
+                        $scope.detailsList = response.data;
+                        if ($scope.detailsList.data) {
+                            $scope.showTable = true;
+                            $scope.showForm = false;
+                        } else {
+                            $scope.showTable = false;
+                            $scope.showForm = true;
+                            isNew = true;
+                            $scope.educationDetail = {};
+                        }
 
-							} else {
-								alert("Error Occured" + response.message);
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
 
-							}
-						}).error(function(err) {
-							alert("Error Occured" + response.message);
-				});
-			};
-			$scope.goToNextPage = function() {
-				$location.url('/employmentDetails');
-			};
-			
-			$scope.goToPreviousPage = function(){
-				$location.url('/registration2');
-			}
-			
-			$scope.save = function () {
-				$http.put(appSettings.apiBase + '/saveDataPage', $scope.educationDetail)
+                    }
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
+            });
+        };
+        $scope.goToNextPage = function() {
+            $state.go('employment', {
+                user_id: userId
+            });
+        };
 
-				.success(function(response) {
-					if (response.success) {
-						alert("Education Details Updated successfully");
-					} else {
-						alert("Error Occured" + response.message);
-					}
+        $scope.goToPreviousPage = function() {
+            $state.go('contact', {
+                user_id: userId
+            });
+        }
+        
+        $scope.save = function() {
+          var url;
+          if (isNew) {
+            url = appSettings.apiBase + '/' + userId + '/Education';
+          } else {
+            url = appSettings.apiBase + '/' + userId + '/Education/' + $scope.educationDetail.id;
+          }
+            $http.put(url, $scope.educationDetail)
 
-				}).error(function(response) {
-					alert("Error Occured" + response.message);
-				});
-			}
-			
-			$scope.addMoreDetails = function () {
-				$scope.showTable = false;
-				$scope.showForm = true;
-				$scope.details = null;
-			};
-			
-			$scope.delete = function (id) {
-				// delete query from service
-				$http.delete(appSettings.apiBase + '/getData/' + id).success(
-						function(response) {
-							if (response.success) {
-								$scope.get();
-							} else {
-								alert("Error Occured" + response.message);
-							}
-						}).error(function(err) {
-							alert("Error Occured" + response.message);
-				});
-			};
-			
-			$scope.edit = function (id) {
-				$http.get(appSettings.apiBase + '/getData/' + id).success(
-						function(response) {
-							if (response.success) {
-								$scope.educationDetail = { 
-										'school': 'asdf', 
-										'fromYear': '2000', 
-										'toYear':'2010',
-										'board': 'asdf',
-										'cgpa': '12',
-										'course': 'sslc'}; // response
-															// details
-								$scope.showTable = false;
-								$scope.showForm = true;
+            .success(function(response) {
+                if (response.success) {
+                    alert("Education Details Updated successfully");
+                    $scope.get();
+                } else {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                }
+            }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
+            });
+        }
 
-							} else {
-								alert("Error Occured" + response.message);
+        $scope.addMoreDetails = function() {
+            $scope.showTable = false;
+            $scope.showForm = true;
+            $scope.details = null;
+            isNew = true;
+        };
 
-							}
-						}).error(function(err) {
-							alert("Error Occured" + response.message);
-				});
-			};
-			$scope.get();
-		});
+        $scope.delete = function(id) {
+            $http.delete(appSettings.apiBase + '/getData/' + id).success(
+                function(response) {
+                    if (response.success) {
+                        $scope.get();
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
+            });
+        };
+
+        $scope.edit = function(id) {
+            $http.get(appSettings.apiBase + '/' + userId + '/Education/' + id).success(
+                function(response) {
+                    if (response.success) {
+                        $scope.educationDetail = response.data;
+                        $scope.showTable = false;
+                        $scope.showForm = true;
+                        isNew = false;
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
+            });
+        };
+        
+        $scope.get();
+    });

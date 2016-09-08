@@ -1,77 +1,57 @@
 'use strict';
-angular.module('profileBuilder.registration2', ['ngRoute'])
-.controller('registration1Ctrl2',function($scope,$http,$location,$routeParams,appSettings) {
-  var userId = $routeParams.userId;
-  var emergencyContact=[];
+angular.module('profileBuilder.contact', ['ngRoute'])
+    .controller('registration1Ctrl2', function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
 
-
-  $http.get(appSettings.apiBase + '/getData/'+userId)
-  .success(function(response) {
-    if(response.success){
-      $scope.userData=response.userData;
-      localStorage.setItem('userDetails',JSON.stringify(response.userData));
-      $scope.emergencyName1 = $scope.userData.emergencyContact[0].name;
-      $scope.relationshipStatus1 = $scope.userData.emergencyContact[0].relation;
-      $scope.emergencyMobile1 = $scope.userData.emergencyContact[0].contactNumber;
-      $scope.emergencyName2 = $scope.userData.emergencyContact[1].name;
-      $scope.relationshipStatus2 = $scope.userData.emergencyContact[1].relation;
-      $scope.emergencyMobile2 = $scope.userData.emergencyContact[1].contactNumber;
-
-    }
-    else{
-      alert('Error1: ' + err);
-
-    }
-  })
-  .error(function(err) {
-    alert('Error2: ' + err);
-  });
-  
-
-$scope.saveData2 = function(){
-$scope.saveData();
-};
-
-$scope.goToEducation = function(){
-  $location.url('/education/'+userId);
-
-};
-
-$scope.goToRegistration1 = function(){
-  $location.url('/registration1/'+userId);
-
-};
-
-$scope.saveData=function(){
-
-    $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-    var emergencyContact = [
-    {"name":$scope.emergencyName1, "relation":$scope.relationshipStatus1,"contactNumber":$scope.emergencyMobile1},
-    {"name":$scope.emergencyName2, "relation":$scope.relationshipStatus2,"contactNumber":$scope.emergencyMobile2}
-];
-
-    var data = {
-        emergencyContact : emergencyContact
-    };
-
-    $http.put(appSettings.apiBase + '/saveDataPage2', data)
-    .success(function(response) {
-     if(response.success){
-          alert("User Details Updated successfully");
-          $scope.goToEducation();
-        }
-        else
-        {
-          alert("Error Occured"+response.message);
+        $scope.get = function() {
+            $http.get(appSettings.apiBase + '/' + userId + '/Emergency')
+                .success(function(response) {
+                    if (response.success) {
+                        $scope.emergency = response.data;
+                        if (!$scope.emergency) {
+                            $scope.emergency = {};
+                        }
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+                })
+                .error(function(err) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
         }
 
-    })
-    .error(function(response) {
-      alert("Error Occured"+response.message);
+        $scope.goToPrevPage = function() {
+            $state.go('basic', {
+                user_id: userId
+            });
+        };
+
+        $scope.goToNextPage = function() {
+            $state.go('education', {
+                user_id: userId
+            });
+        };
+
+        $scope.save = function() {
+            $http.put(appSettings.apiBase + '/' + userId + '/Emergency', $scope.emergency)
+                .success(function(response) {
+                    if (response.success) {
+                        alert("Emergency Details Updated successfully");
+                        $scope.goToNextPage();
+                    } else {
+                      var error = new AppError(response, $scope);
+                      $scope.errorMessage = error.getErrorMessage();
+                    }
+
+                })
+                .error(function(response) {
+                  var error = new AppError(response, $scope);
+                  $scope.errorMessage = error.getErrorMessage();
+                });
+        }
+
+        $scope.get();
+
     });
-  }
-
-});
-
-  

@@ -6,8 +6,8 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.login',
   'profileBuilder.FBConnect',
   'profileBuilder.linkedInConnect',
-  'profileBuilder.registration1',
-  'profileBuilder.registration2',
+  'profileBuilder.basic',
+  'profileBuilder.contact',
   'profileBuilder.education',
   'profileBuilder.breadCrumb',
   'profileBuilder.passportDetails',
@@ -109,4 +109,30 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
       controller: 'connectCtrl'
   })
 });
+
+app.run(function($rootScope, $state) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if (angular.isDefined(toState.data) && angular.isDefined(toState.data.authenticatedUser)) {
+            if (toState.data.authenticatedUser) {
+                if (UserAuth.isAuthenticated()) {
+                    if ((toState.data.userRole == 'admin' && $rootScope.globals.currentUser.username == 'admin') || toState.data.userRole == 'user') {
+                        $state.go(toState, toParams);
+                        return;
+                    } else {
+                        $state.go('login');
+                        return;
+                    }
+                } else {
+                    $state.go('login');
+                    return;
+                }
+            } else {
+                $state.go(toState, toParams);
+                return;
+            }
+        }
+        $state.go(toState, toParams);
+        return;
+    });
+})
 app.constant('appSettings', appConfig);

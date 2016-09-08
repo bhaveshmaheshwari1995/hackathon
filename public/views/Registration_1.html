@@ -4,94 +4,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container margin-top-80">
-		<div class="row" align="center">
-			<img src="images/aspire-logo.jpg">
-		</div>
-		<div
-			class="panel-info col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panelHeading text-center" ng-controller="breadCrumbCtrl">
-				<div ng-include="'views/templates/breadcrumb.html'"></div>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal">
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<input type="text" class="form-control" id="firstName"
-								ng-model="firstName" placeholder="First Name" required>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-6 form-group">
-							<input type="text" class="form-control" id="lastName"
-								ng-model="lastName" placeholder="Last Name" required>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<select class="form-control" id="inputEmail" ng-model="gender"
-								placeholder="Gender" class="col-md-6">
-								<option selected="selected" value="male">Male</option>
-								<option value="female">Female</option>
-							</select>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-6 form-group">
-							<input type="Date" class="form-control" id="date" ng-model="date"
-								placeholder="Date" class="col-md-6" required>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<input type="Number" class="form-control" id="mobileNumber"
-								ng-model="mobileNumber" placeholder="Mobile Number" required>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-6 form-group">
-							<input type="email" class="form-control" id="email"
-								ng-model="email" placeholder="Personal Email Address" required>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 form-group">
-							<textarea class="form-control" name="currentAddress" rows="2"
-								id="currentAddress" ng-model="currentAddress"
-								placeholder="Current Address (Address1, Address2, City,State,Pincode)"
-								required></textarea>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-11 form-group">
-							<div class="checkbox">
-								<label><input type="checkbox" ng-model="check">Same
-									as Current Address</label>
+	<div class="container margin-top-20">
+		<div ng-include="'views/templates/header.html'"></div>
+		<div class="row">
+			<div
+				class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">Basic Profile Details</div>
+					<div class="panel-body" ng-controller="breadCrumbCtrl">
+						<div ng-include="'views/templates/breadcrumb.html'"></div>
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="firstName"
+										ng-model="basicDetails.firstName" placeholder="First Name"
+										required>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="lastName"
+										ng-model="basicDetails.lastName" placeholder="Last Name"
+										required>
+								</div>
 							</div>
-						</div>
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<select class="form-control" id="inputEmail"
+										ng-model="basicDetails.gender" placeholder="Gender"
+										class="col-md-6">
+										<option selected="selected" value="male">Male</option>
+										<option value="female">Female</option>
+									</select>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group input-group">
+									<input type="date" class="form-control" id="dateOfBirth"
+										ng-model="basicDetails.dateOfBirth"
+										placeholder="Date Of Birth" class="col-md-6" required><span
+										class="input-group-addon"><i
+										class="glyphicon glyphicon-calendar"></i></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="mobileNumber"
+										ng-model="basicDetails.mobileNumber"
+										placeholder="Mobile Number" required>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="email" class="form-control" id="emailId"
+										ng-model="basicDetails.emailId"
+										placeholder="Personal Email Address" required>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 form-group">
+									<textarea class="form-control" name="currentAddress" rows="2"
+										id="currentAddress" ng-model="basicDetails.currentAddress"
+										placeholder="Current Address (Address1, Address2, City,State,Pincode)"
+										required></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 form-group">
+									<div class="checkbox">
+										<label><input type="checkbox" ng-model="check"
+											ng-change="check && updateAddress()">Same as Current
+											Address</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 form-group">
+									<textarea class="form-control" name="permanentAddress" rows="2"
+										id="permanentAddress" ng-model="basicDetails.permanentAddress"
+										placeholder="Permanent Address (Address1, Address2, City,State,Pincode)"
+										required></textarea>
+								</div>
+							</div>
+							<div class="row margin">
+								<div class="col-xs-offset-3 col-xs-5">
+									<button type="submit"
+										class="md-raised md-primary md-button md-ink-ripple mainBut"
+										ng-click="save()">
+										<span class="ng-scope">Save & Continue</span> <i
+											class="fa fa-angle-double-right ng-scope"></i>
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
-					<div class="row">
-						<div class="col-xs-12 form-group">
-							<textarea class="form-control" name="permanentAddress" rows="2"
-								id="permanentAddress" ng-model="permanentAddress"
-								placeholder="Permanent Address (Address1, Address2, City,State,Pincode)"
-								required></textarea>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block"
-								ng-click="goToLinkedIn()">
-								<span class="glyphicon glyphicon-arrow-left"></span> Back
-							</button>
-						</div>
-						<div class="col-xs-1"></div>
-						<div class="col-xs-5">
-							<button type="submit" class="btn btn-block"
-								ng-click="saveRegisterationData1()">
-								Continue <span class="glyphicon glyphicon-arrow-right"></span>
-							</button>
-						</div>
-					</div>
-
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
