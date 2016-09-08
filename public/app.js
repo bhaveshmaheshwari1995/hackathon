@@ -17,6 +17,7 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.OBForms',
   'profileBuilder.refVerify',
   'profileBuilder.HRMenu',
+  'profileBuilder.profile',
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	

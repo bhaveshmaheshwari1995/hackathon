@@ -1,18 +1,17 @@
 'use strict';
 angular.module('profileBuilder.employees', ['ngRoute'])
 
-.controller('employeesCtrl',function($scope,$http,$location,$routeParams, appSettings) {
+.controller('employeesCtrl',function($scope,$http,$location,$stateParams, appSettings) {
 
-	var userId = $routeParams.userId;
+	var userId = $stateParams.userId;
 
-  $scope.employees=[{'name':"Bhavesh","id":"1","email":"bhavesh@gmail.com"},
-                 {'name':"Ameya","id":"2","email":"ameya@gmail.com"}];
+  $scope.employees=[];
 
 
-  $http.get(appSettings.apiBase + '/getEmployeeData/'+userId)
+  $http.get(appSettings.apiBase + '/list/1/2')
   .success(function(response) {
   	if(response.success){
-      $scope.employees = response.userData;
+      $scope.employees = response.data;
 
   	}
   	else{
@@ -26,7 +25,7 @@ angular.module('profileBuilder.employees', ['ngRoute'])
   
 
 $scope.goToProfile = function(id){
-  $location.url('/linkedInConnect');
+$location.url('/profile/'+userId);
 
 };
 
