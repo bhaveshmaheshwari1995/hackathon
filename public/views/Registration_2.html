@@ -5,63 +5,66 @@
 </head>
 <body>
 	<div class="container margin-top-20">
-	<div ng-include="'views/templates/header.html'"></div>
-        <div class="row">
-		<div class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
-			<div class="panel panel-primary">
-				<div class="panel-heading text-center">Basic Profile Details</div>
-				<div class="panel-body" ng-controller="breadCrumbCtrl">
-					<div ng-include="'views/templates/breadcrumb.html'"></div>
-					<form class="form-horizontal">
-						<div class="row">
-							<div class="col-xs-12 col-md-6 form-group">
-								<input type="text" class="form-control" id="name"
-									ng-model="emergency.name"
-									placeholder="Emergency Primary Contact 1 Name">
+		<div ng-include="'views/templates/header.html'"></div>
+		<div class="row">
+			<div
+				class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">Basic Profile Details</div>
+					<div class="panel-body" ng-controller="breadCrumbCtrl">
+						<div ng-include="'views/templates/breadcrumb.html'"></div>
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="name"
+										ng-model="emergency.name"
+										placeholder="Emergency Contact Name">
+								</div>
 							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-xs-12 col-md-6 form-group">
-								<select class="form-control" id="relation"
-									ng-model="emergency.relation" placeholder="Relationship Status"
-									class="col-md-6">
-									<option selected="selected" value="Spouse">Spouse</option>
-									<option value="Parent">Parent</option>
-								</select>
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<select class="form-control" id="relation"
+										ng-model="emergency.relation"
+										placeholder="Relationship Status" class="col-md-6">
+										<option selected="selected" value="Spouse">Spouse</option>
+										<option value="Parent">Parent</option>
+									</select>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="contactNumber"
+										ng-model="emergency.contactNumber"
+										placeholder="Contact Mobile/Telephone" class="col-md-6">
+								</div>
 							</div>
-							<div class="col-xs-1 form-group"></div>
-							<div class="col-xs-12 col-md-6 form-group">
-								<input type="text" class="form-control" id="contactNumber"
-									ng-model="emergency.contactNumber"
-									placeholder="Contact Mobile/Telephone" class="col-md-6">
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-xs-6">
-								<button type="submit"
-									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
-									ng-click="goToPrevPage()">
-									<i class="fa fa-angle-double-left ng-scope"></i> <span
-										class="ng-scope">Back</span>
-								</button>
+							<div class="row">
+								<div class="col-xs-6">
+									<button type="submit"
+										class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+										ng-click="goToPrevPage()">
+										<i class="fa fa-angle-double-left ng-scope"></i> <span
+											class="ng-scope">Back</span>
+									</button>
+								</div>
+								<div class="col-xs-1"></div>
+								<div class="col-xs-6">
+									<button type="submit"
+										class="md-raised md-primary md-button md-ink-ripple mainBut"
+										ng-click="save()">
+										<span class="ng-scope">Save & Continue</span> <i
+											class="fa fa-angle-double-right ng-scope"></i>
+									</button>
+								</div>
 							</div>
-							<div class="col-xs-1"></div>
-							<div class="col-xs-6">
-								<button type="submit"
-									class="md-raised md-primary md-button md-ink-ripple mainBut"
-									ng-click="save()">
-									<span class="ng-scope">Save & Continue</span> <i
-										class="fa fa-angle-double-right ng-scope"></i>
-								</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		
+	</div>
+	<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>

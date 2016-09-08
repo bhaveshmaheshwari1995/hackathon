@@ -2429,7 +2429,7 @@ a:focus {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  border-top-color: #3c8dbc;
+  border-top-color: #8d599f;
 }
 .nav-pills > li.active > a {
   font-weight: 600;

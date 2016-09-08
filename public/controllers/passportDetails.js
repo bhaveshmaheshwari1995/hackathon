@@ -1,68 +1,55 @@
-
- 'use strict';
+'use strict';
 angular.module('profileBuilder.passportDetails', ['ngRoute'])
-.controller('passportDetailsCtrl',function($scope,$http,$location,$routeParams) {
-  var userId = $routeParams.userId;
-
-  $http.get('/getData/'+userId)
-  .success(function(response) {
-    if(response.success){
-      $scope.userData=response.userData;
-      localStorage.setItem('userDetails',JSON.stringify(response.userData));
-
-      $scope.passportNumber = response.userData.passportDetails.passportNumber;
-      $scope.passportPlace = response.userData.passportDetails.passportPlace;
-      $scope.validFrom = response.userData.passportDetails.validFrom;
-      $scope.validTo = response.userData.passportDetails.validTo;
-      
-    }
-    else{
-      alert('Error1: ' + err);
-    }
-  })
-  .error(function(err) {
-    alert('Error2: ' + err);
-  });
-  
-
-
-$scope.goToBankDetails = function(){
-  $location.url('/bankDetails/'+userId);
-};
-
-$scope.saveData=function(){
-    $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-    var passportDetails = [
-    {
-        passportNumber : $scope.passportNumber,
-        placeOfIssue : $scope.passportPlace,
-        validFrom : $scope.validFrom,
-        validTill : $scope.validTill
-    }
-];
-
-    var data = {
-        passportDetails : passportDetails
-    };
-
-    $http.put('/saveDataPage', data)
-    .success(function(response) {
-     if(response.success){
-          alert("User Details Updated successfully");
-          goToBankDetails();
-        }
-        else
-        {
-          alert("Error Occured"+response.message);
+    .controller('passportDetailsCtrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
+            var userId = localStorage.getItem('id');
+            var isNew;
+            $scope.get = function() {
+                    $http.get(appSettings.apiBase + '/' + userId + '/Passport')
+                        .success(function(response) {
+                            if (response.success) {
+                                $scope.passport = response.data;
+                                if (!$scope.passport) {
+                                    $scope.passport = {};
+                                }
+                            } else {
+                                var error = new AppError(response, $scope);
+                                $scope.errorMessage = error.getErrorMessage();
+                            }
+                        })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
         }
 
-    })
-    .error(function(response) {
-      alert("Error Occured"+response.message);
+        $scope.goToPreviousPage = function() {
+            $state.go('reference', {
+                user_id: userId
+            });
+        }; $scope.goToNextPage = function() {
+            $state.go('bank', {
+                user_id: userId
+            });
+        };
+
+        $scope.save = function() {
+
+            $http.put(appSettings.apiBase + '/' + userId + '/Passport', $scope.passport)
+                .success(function(response) {
+                    if (response.success) {
+                        alert("Passport Details Updated successfully");
+                        $scope.goToNextPage();
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
+        }
+
+        $scope.get();
     });
-  }
-
-});
-
-  

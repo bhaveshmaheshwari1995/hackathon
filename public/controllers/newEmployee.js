@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('profileBuilder.login', ['ngRoute']).controller(
-    'loginCtrl',
+angular.module('profileBuilder.newEmployee', ['ngRoute']).controller(
+    'newEmployeeCtrl',
     function($rootScope, $scope, $http, $location, $routeParams, appSettings, $state) {
         $scope.authenticate = function() {
-            $http.post(appSettings.apiBase + '/authenticate', $scope.login)
+            $http.post(appSettings.apiBase + '/OBauthenticate', {OBcode:$scope.OBCode})
                 .success(function(response) {
                     if (response.success) {
                         localStorage.setItem('token', response.token);
                         localStorage.setItem('id', response.id);
-                        localStorage.setItem('newUser', 'false');
-                        $state.go('basic', {user_id: localStorage.getItem('id')});
+                        localStorage.setItem('newUser', 'true');
+                        $state.go('FBConnect', {user_id: localStorage.getItem('id')});
                     } else {
                         var error = new AppError(response, $scope);
                         $scope.errorMessage = error.getErrorMessage();
@@ -20,4 +20,7 @@ angular.module('profileBuilder.login', ['ngRoute']).controller(
                     $scope.errorMessage = error.getErrorMessage();
                 });
         };
+        $scope.goToPreviousPage = function() {
+          $state.go('login');
+        }
     });
