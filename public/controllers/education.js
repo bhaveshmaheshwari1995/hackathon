@@ -47,8 +47,6 @@ angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtr
           } else {
             url = appSettings.apiBase + '/' + userId + '/Education/' + $scope.educationDetail._id;
           }
-          console.log(isNew);
-          console.log($scope.educationDetail);
             $http.put(url, $scope.educationDetail)
 
             .success(function(response) {

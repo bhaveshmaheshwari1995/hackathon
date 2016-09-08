@@ -20,7 +20,11 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.newEmployee',
   'profileBuilder.genOBCode',
   'profileBuilder.profile',
+<<<<<<< HEAD
 
+=======
+  'profileBuilder.reports'
+>>>>>>> 46b4595d87080cf4f3816d21b7421cb2827242c5
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -116,31 +120,18 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     url:'/profile/complete',
     templateUrl: './views/lastPage.html'
   })
+  .state('report',{
+    url:'/report',
+    templateUrl: './views/report.html',
+    controller: 'reportsCtrl'
+  })  
 });
 
-app.run(function($rootScope, $state) {
+app.run(function($rootScope, $state, $location) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        if (angular.isDefined(toState.data) && angular.isDefined(toState.data.authenticatedUser)) {
-            if (toState.data.authenticatedUser) {
-                if (UserAuth.isAuthenticated()) {
-                    if ((toState.data.userRole == 'admin' && $rootScope.globals.currentUser.username == 'admin') || toState.data.userRole == 'user') {
-                        $state.go(toState, toParams);
-                        return;
-                    } else {
-                        $state.go('login');
-                        return;
-                    }
-                } else {
-                    $state.go('login');
-                    return;
-                }
-            } else {
-                $state.go(toState, toParams);
-                return;
-            }
-        }
-        $state.go(toState, toParams);
-        return;
+      if (localStorage.getItem('token') === null) {console.log("asdf");
+        $state.go('login');
+      }
     });
 })
 app.constant('appSettings', appConfig);
