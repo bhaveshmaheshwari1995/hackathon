@@ -3,7 +3,7 @@ angular.module('profileBuilder.OBForms', ['ngRoute'])
 
 .controller('OBFormsCtrl', function($scope, $http, $location, $stateParams, appSettings, $state) {
 
-    $http.get(appSettings.apiBase + '/list/1/100')
+    $http.get(appSettings.apiBase + '/list/1/100/Draft')
         .success(function(response) {
             if (response.success) {
                 $scope.OBs = response.data;

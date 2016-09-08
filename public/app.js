@@ -22,6 +22,7 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.profile',
   'profileBuilder.reports',
   'profileBuilder.rolestar',
+  'profileBuilder.lastPage',
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -115,7 +116,8 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
   })
   .state('lastPage',{
     url:'/profile/complete',
-    templateUrl: './views/lastPage.html'
+    templateUrl: './views/lastPage.html',
+    controller: 'lastPageCtrl'
   })
   .state('report',{
     url:'/report',
@@ -126,9 +128,9 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 
 app.run(function($rootScope, $state, $location) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (localStorage.getItem('token') === null) {console.log("asdf");
+      /*if (localStorage.getItem('token') === null) {console.log("asdf");
         $state.go('login');
-      }
+      }*/
     });
 })
 app.constant('appSettings', appConfig);

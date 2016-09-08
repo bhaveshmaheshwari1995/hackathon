@@ -36,7 +36,7 @@ angular.module('profileBuilder.refVerify', ['ngRoute']).controller('refVerifyCtr
         };
 
         $scope.goToPreviousPage = function() {
-            $state.go('employee', {
+            $state.go('employment', {
                 user_id: userId
             });
         }

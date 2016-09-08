@@ -28,11 +28,11 @@ angular.module('profileBuilder.bankDetails', ['ngRoute'])
             });
         };
         $scope.goToNextPage = function() {
-            if (localStorage.getItem('newUser') == 'true') {
+            if (localStorage.getItem('newUser') == 'true') {console.log("if");
                 alert("Your all details have been saved successfully!!!");
                 localStorage.clear();
                 $state.go('lastPage');
-            } else {
+            } else {console.log("else");
                 alert("Your all details have been saved successfully!!!");
                 $state.go('profile', {
                     userId: userId
