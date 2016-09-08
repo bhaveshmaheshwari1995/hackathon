@@ -1,10 +1,13 @@
 'use strict';
 angular.module('profileBuilder.rolestar', ['ngRoute','ngFileUpload'])
 
-.controller('rolestarCtrl',['Upload','$window',function(Upload,$window,$stateParams){
+.controller('rolestarCtrl',['Upload','$window',function(Upload,$window,$stateParams,$scope){
+
      var userId = $stateParams.userId;
     var vm = this;
-    vm.submit = function(){ //function to call on form submit
+    $scope.submit = function(){ //function to call on form submit
+
+        alert("aaya");
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
             vm.upload(vm.file); //call upload function
         }

@@ -155,6 +155,24 @@ $scope.DOJAvailable = "";
                     $scope.errorMessage = error.getErrorMessage();
                 });
         };
+ var data = {"title":$scope.rolestarTitle,"desc":$scope.rolestarDescription}; 
 
+ $scope.addRolestar = function() {
+          
+            $http.post(appSettings.apiBase + '/users/' + userId + '/rewards',data)
+                .success(function(response) {
+                    if (response.success) {
+                        alert("Rolestar added successfully");
+                        
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
 
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
+        };
     });

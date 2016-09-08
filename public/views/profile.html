@@ -141,32 +141,18 @@
         </div>
 <div >
     <H1>Role Star</H1>
-    <form class="form-horizontal" ng-controller="rolestarCtrl as up" name="up.upload_form">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-6 form-group">
-                                   <input 
-                                        type="file" 
-                                        ngf-select 
-                                        ng-model="up.file" 
-                                        name="file" 
-                                        ngf-pattern="'image/*'"
-                                        accept="image/*" 
-                                        ngf-max-size="20MB" 
-                                    />
-                                </div>
-                               
-                            </div>
+    <form class="form-horizontal" >
                             <div class="row">
                                 <div class="col-xs-10 col-md-6 form-group">
                                     <input type="text" class="form-control" id="title"
-                                        ng-model="title"
+                                        ng-model="rolestarTitle"
                                         placeholder="Title" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-10 col-md-6 form-group">
-                                    <input type="email" class="form-control" id="personalEmailId"
-                                        ng-model="description"
+                                    <input type="text" class="form-control" id="personalEmailId"
+                                        ng-model="rolestarDescription"
                                         placeholder="Description" required>
                                 
                                 </div>
@@ -174,11 +160,10 @@
                                 
                             </div>
                             <div class=" col-xs-5">
-                                    <button type="submit"
+                                    <button type="button"
                                         class="md-raised md-primary md-button md-ink-ripple mainBut"
-                                        ng-click="up.submit()">
-                                        <span class="ng-scope">Submit</span> <i
-                                            class="fa fa-angle-double-right ng-scope"></i>
+                                        ng-click="addRolestar()">
+                                        <span class="ng-scope">Submit
                                     </button>
                                 </div>
                             </div>
