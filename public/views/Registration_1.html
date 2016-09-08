@@ -11,7 +11,7 @@
 				class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
 				<div class="panel panel-primary">
 					<div class="panel-heading text-center">Basic Profile Details</div>
-					<div class="panel-body" ng-controller="breadCrumbCtrl">
+					<div class="panel-body" ng-controller="breadCrumbCtrl" ng-init="activeMenu='Basic'">
 						<div ng-include="'views/templates/breadcrumb.html'"></div>
 						<form class="form-horizontal">
 							<div class="row">
@@ -29,7 +29,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12 col-md-6 form-group">
-									<select class="form-control" id="inputEmail"
+									<select class="form-control" id="gender"
 										ng-model="basicDetails.gender" placeholder="Gender"
 										class="col-md-6" required>
 										<option selected="selected" value="male">Male</option>
@@ -53,8 +53,8 @@
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-12 col-md-6 form-group">
-									<input type="email" class="form-control" id="emailId"
-										ng-model="basicDetails.emailId"
+									<input type="email" class="form-control" id="personalEmailId"
+										ng-model="basicDetails.personalEmailId"
 										placeholder="Personal Email Address" required>
 								</div>
 							</div>

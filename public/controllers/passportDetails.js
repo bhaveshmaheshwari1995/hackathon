@@ -8,7 +8,7 @@ angular.module('profileBuilder.passportDetails', ['ngRoute'])
                         .success(function(response) {
                             if (response.success) {
                                 $scope.passport = response.data;
-                                if (! $scope.passport.length) {
+                                if (! $scope.passport) {
                                     $scope.passport = {};
                                 }
                             } else {
