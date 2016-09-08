@@ -58,10 +58,10 @@
 								</div>
 								<div class="col-xs-1 form-group"></div>
 								<div class="col-xs-6 form-group">
-								<input type="hidden" class="form-control" id="id"
-										ng-model="educationDetail.id">
-									<!-- <select class="form-control" id="course"
-										ng-model="educationDetail.course" placeholder="Course"
+									<input type="hidden" class="form-control" id="id"
+										ng-model="educationDetail._id">
+									<select class="form-control" id="degree"
+										ng-model="educationDetail.degree" placeholder="Degree"
 										class="col-md-6">
 										<option selected="selected" value="SSLC">SSLC</option>
 										<option value="HSC">HSC</option>
@@ -71,7 +71,7 @@
 										<option value="ME">ME</option>
 										<option value="MBA">MBA</option>
 										<option value="MSC">MSC</option>
-									</select> -->
+									</select>
 								</div>
 							</div>
 
@@ -104,14 +104,14 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="detail in detailsList">
-										<td>{{educationDetail.institution}}</td>
-										<td>{{educationDetail.fromYear}}</td>
-										<td>{{educationDetail.toYear}}</td>
-										<td>{{educationDetail.board}}</td>
-										<td>{{educationDetail.course}}</td>
-										<td>{{educationDetail.cgpa}}</td>
-										<td><a ng-click="edit(educationDetail.id)">Edit</a></td>
-										<td><a ng-click="delete(educationDetail.id)">Delete</a></td>
+										<td>{{detail.institution}}</td>
+										<td>{{detail.fromYear}}</td>
+										<td>{{detail.toYear}}</td>
+										<td>{{detail.board}}</td>
+										<td>{{detail.degree}}</td>
+										<td>{{detail.cgpa}}</td>
+										<td><a ng-click="edit(detail._id)">Edit</a></td>
+										<td><a ng-click="delete(detail._id)">Delete</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -148,6 +148,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>

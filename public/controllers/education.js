@@ -8,7 +8,7 @@ angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtr
                 function(response) {
                     if (response.success) {
                         $scope.detailsList = response.data;
-                        if ($scope.detailsList.data) {
+                        if ($scope.detailsList.length) {
                             $scope.showTable = true;
                             $scope.showForm = false;
                         } else {
@@ -45,13 +45,16 @@ angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtr
           if (isNew) {
             url = appSettings.apiBase + '/' + userId + '/Education';
           } else {
-            url = appSettings.apiBase + '/' + userId + '/Education/' + $scope.educationDetail.id;
+            url = appSettings.apiBase + '/' + userId + '/Education/' + $scope.educationDetail._id;
           }
+          console.log(isNew);
+          console.log($scope.educationDetail);
             $http.put(url, $scope.educationDetail)
 
             .success(function(response) {
                 if (response.success) {
                     alert("Education Details Updated successfully");
+                    $scope.educationDetail = {};
                     $scope.get();
                 } else {
                     var error = new AppError(response, $scope);
@@ -68,6 +71,7 @@ angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtr
             $scope.showForm = true;
             $scope.details = null;
             isNew = true;
+            $scope.educationDetail = {};
         };
 
         $scope.delete = function(id) {

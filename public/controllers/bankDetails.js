@@ -1,68 +1,63 @@
-
- 'use strict';
+'use strict';
 angular.module('profileBuilder.bankDetails', ['ngRoute'])
-.controller('bankDetailsCtrl',function($scope,$http,$location,$routeParams) {
-  var userId = $routeParams.userId;
-
-  $http.get('/getData/'+userId)
-  .success(function(response) {
-    if(response.success){
-      $scope.userData=response.userData;
-      localStorage.setItem('userDetails',JSON.stringify(response.userData));
-
-      $scope.bankName = response.userData.bankDetails.bankName;
-      $scope.accountNumber = response.userData.bankDetails.accountNumber;
-      $scope.branchName = response.userData.bankDetails.branchName;
-      $scope.accountType = response.userData.bankDetails.accountType;
-      $scope.UANnumber = response.userData.bankDetails.UANnumber;
-      
-    }
-    else{
-      alert('Error1: ' + err);
-    }
-  })
-  .error(function(err) {
-    alert('Error2: ' + err);
-  });
- 
-$scope.goToPassportDetails = function(){
-  $location.url('/passportDetails/'+userId);
-
-};
-
-$scope.saveData=function(){
-  alert("save called");
-    $scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-var bankDetails = [
-    {
-        bankName : $scope.passportNumber,
-        accountNumber : $scope.passportPlace,
-        branchName : $scope.validFrom,
-        UANnumber : $scope.validTill
-    }
-];
-
-    var data = {
-        bankDetails : bankDetails
-    };
-
-    $http.put('/saveDataPage', data)
-    .success(function(response) {
-     if(response.success){
-          alert("User Details Updated successfully");
-        }
-        else
-        {
-          alert("Error Occured"+response.message);
+    .controller('bankDetailsCtrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
+        var isNew;
+        $scope.get = function() {
+            $http.get(appSettings.apiBase + '/' + userId + '/Bank')
+                .success(function(response) {
+                    if (response.success) {
+                        $scope.bankDetail = response.data;
+                        if (!$scope.bankDetail) {
+                            $scope.bankDetail = {};
+                        }
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
         }
 
-    })
-    .error(function(response) {
-      alert("Error Occured"+response.message);
+        $scope.goToPreviousPage = function() {
+            $state.go('passport', {
+                user_id: userId
+            });
+        };
+        $scope.goToNextPage = function() {
+            if (localStorage.getItem('newUser') == 'true') {
+                alert("Your all details have been saved successfully!!!");
+                localStorage.clear();
+                $state.go('lastPage');
+            } else {
+                alert("Your all details have been saved successfully!!!");
+                $state.go('profile', {
+                    userId: userId
+                });
+            }
+
+        };
+
+        $scope.save = function() {
+            $http.put(appSettings.apiBase + '/' + userId + '/Bank', $scope.bankDetail)
+                .success(function(response) {
+                    if (response.success) {
+                        alert("Bank Details Updated successfully");
+                        $scope.goToNextPage();
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
+        }
+
+        $scope.get();
     });
-  }
-
-});
-
-  

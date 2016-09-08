@@ -5,118 +5,126 @@
 </head>
 <body>
 	<div class="container margin-top-20">
-	<div ng-include="'views/templates/header.html'"></div>
-        <div class="row">
-		<div class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
-                        <div class="panel panel-primary">
-			<div class="panel-heading text-center">Employment Details
-			</div>
-			<div class="panel-body" ng-show="showForm" ng-controller="breadCrumbCtrl">
-				<div ng-include="'views/templates/breadcrumb.html'"></div>
-				<form class="form-horizontal">
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<input type="text" class="form-control" id="previousCompany"
-								ng-model="employmentDetail.previousCompany" placeholder="Previous Company">
-						</div>
-					</div>
+		<div ng-include="'views/templates/header.html'"></div>
+		<div class="row">
+			<div
+				class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">Employment Details</div>
+					<div class="panel-body" ng-show="showForm"
+						ng-controller="breadCrumbCtrl">
+						<div ng-include="'views/templates/breadcrumb.html'"></div>
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="col-xs-6 form-group">
+									<input type="text" class="form-control" id="previousCompanyName"
+										ng-model="employmentDetail.previousCompanyName"
+										placeholder="Previous Company">
+								</div>
+							</div>
 
-					<div class="row">
-						<div class="col-xs-12 col-md-6 form-group">
-							<select class="form-control" id="fromYear" ng-model="employmentDetail.fromYear"
-								placeholder="From Year" class="col-md-6">
-								<option selected="selected" value="2000">2000</option>
-								<option value="2001">2001</option>
-							</select>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-12 col-md-6 form-group">
-							<select class="form-control" id="toYear" ng-model="employmentDetail.toYear"
-								placeholder="To Year" class="col-md-6">
-								<option selected="selected" value="2010">2010</option>
-								<option value="2011">2011</option>
-							</select>
-						</div>
-					</div>
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<select class="form-control" id="fromYear"
+										ng-model="employmentDetail.fromYear" placeholder="From Year"
+										class="col-md-6">
+										<option selected="selected" value="2000">2000</option>
+										<option value="2001">2001</option>
+									</select>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<select class="form-control" id="toYear"
+										ng-model="employmentDetail.toYear" placeholder="To Year"
+										class="col-md-6">
+										<option selected="selected" value="2010">2010</option>
+										<option value="2011">2011</option>
+									</select>
+								</div>
+							</div>
 
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<input type="text" class="form-control" id="designation"
-								ng-model="employmentDetail.designation" placeholder="Designation/ Title">
-						</div>
-					</div>
+							<div class="row">
+								<div class="col-xs-6 form-group">
+									<input type="text" class="form-control" id="designation"
+										ng-model="employmentDetail.designation"
+										placeholder="Designation/ Title">
+										<input type="hidden" class="form-control" id="id"
+										ng-model="employmentDetail._id">
+								</div>
+							</div>
 
-					<div class="row">
-						<div class="col-xs-12 col-md-6 form-group">
-							<input type="text" class="form-control" id="location"
-								ng-model="employmentDetail.location" placeholder="Location">
+							<div class="row margin">
+								<div class="col-xs-offset-3  col-xs-5">
+									<button type="submit"
+										class="imd-raised md-primary md-button md-ink-ripple mainBut"
+										ng-click="save()">
+										<span class="ng-scope">Save</span> <i class="icon-save"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body" ng-show="showTable">
+						<div class="row">
+							<table id="EmploymentDetailsTable"
+								class="table table-striped table-hover table-users">
+								<thead>
+									<tr>
+										<th>Company Name</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Designation</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="detail in detailsList">
+										<td>{{detail.previousCompanyName}}</td>
+										<td>{{detail.fromYear}}</td>
+										<td>{{detail.toYear}}</td>
+										<td>{{detail.designation}}</td>
+										<td><a ng-click="edit(detail._id)">Edit</a></td>
+										<td><a ng-click="delete(detail._id)">Delete</a></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-					</div>
-					<div class="row margin">
-						<div class="col-xs-offset-3  col-xs-5">
-							<button type="submit" class="imd-raised md-primary md-button md-ink-ripple mainBut" ng-click="save()">
-							 <span class="ng-scope">Save</span>
-                                                                <i class="icon-save"></i>
-							</button>
+						<div class="row margin">
+							<div class="col-xs-5">
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+									ng-click="goToPreviousPage()">
+									<i class="fa fa-angle-double-left ng-scope"></i> <span
+										class="ng-scope">Back</span>
+								</button>
+							</div>
+							<div class="col-xs-1"></div>
+							<div class="col-xs-5">
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple mainBut"
+									ng-click="goToNextPage()">
+									<span class="ng-scope">Continue</span> <i
+										class="fa fa-angle-double-right ng-scope"></i>
+								</button>
+							</div>
 						</div>
-					</div>
-				</form>
-			</div>
-			<div class="panel-body" ng-show="showTable">
-				<div class="row">
-					<table id="EmploymentDetailsTable"
-						class="table table-striped table-hover table-users">
-						<thead>
-							<tr>
-								<th>Company Name</th>
-								<th>From</th>
-								<th>To</th>
-								<th>Designation</th>
-								<th>Location</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="detail in detailsList">
-								<td>{{employmentDetail.previousCompany}}</td>
-								<td>{{employmentDetail.fromYear}}</td>
-								<td>{{employmentDetail.toYear}}</td>
-								<td>{{employmentDetail.designation}}</td>
-								<td>{{employmentDetail.location}}</td>
-								<td><a ng-click="edit(employmentDetail.id)">Edit</a></td>
-								<td><a ng-click="delete(employmentDetail.id)">Delete</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="row margin">
-					<div class="col-xs-5">
-						<button type="submit" class="md-raised md-primary md-button md-ink-ripple secondaryBut" ng-click="goToPreviousPage()">
-							<i class="fa fa-angle-double-left ng-scope"></i> <span
-                                                                                class="ng-scope">Back</span>
-						</button>
-					</div>
-					<div class="col-xs-1"></div>
-					<div class="col-xs-5">
-						<button type="submit" class="md-raised md-primary md-button md-ink-ripple mainBut"
-							ng-click="goToNextPage()">
-							<span class="ng-scope">Continue</span> <i
-                                                                                class="fa fa-angle-double-right ng-scope"></i>
-						</button>
-					</div>
-				</div>
-				<div class="row margin">
-					<div class="col-xs-offset-3  col-xs-5">
-						<button type="submit" class="md-raised md-primary md-button md-ink-ripple secondaryBut"
-							ng-click="addMoreDetails()">
-							<span class="ng-scope">Add More</span><i class="fa fa-plus" aria-hidden="true"></i>
-						</button>
+						<div class="row margin">
+							<div class="col-xs-offset-3  col-xs-5">
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+									ng-click="addMoreDetails()">
+									<span class="ng-scope">Add More</span><i class="fa fa-plus"
+										aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>

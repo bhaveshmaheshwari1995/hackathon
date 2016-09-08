@@ -8,7 +8,7 @@ angular.module('profileBuilder.contact', ['ngRoute'])
                 .success(function(response) {
                     if (response.success) {
                         $scope.emergency = response.data;
-                        if (!$scope.emergency) {
+                        if ($scope.emergency.length) {
                             $scope.emergency = {};
                         }
                     } else {

@@ -1,54 +1,68 @@
 'use strict';
 angular.module('profileBuilder.employment', ['ngRoute']).controller('employmentDetailsCtrl',
-    function($scope, $http, $location, $routeParams, appSettings) {
+    function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
+        var isNew;
         $scope.get = function() {
 
-            $http.get(appSettings.apiBase + '/getData').success(
+            $http.get(appSettings.apiBase + '/' + userId + '/Employment').success(
                 function(response) {
                     if (response.success) {
-                        $scope.detailsList = [{
-                            'previousCompany': 'asdf',
-                            'fromYear': '2000',
-                            'toYear': '2010',
-                            'designation': 'asdf',
-                            'location': '12'
-                        }]; // response data
-                        if ($scope.detailsList) {
+                        $scope.detailsList = response.data;
+                        if ($scope.detailsList.length) {
                             $scope.showTable = true;
                             $scope.showForm = false;
                         } else {
                             $scope.showTable = false;
                             $scope.showForm = true;
+                            isNew = true;
+                            $scope.employmentDetail = {};
                         }
 
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
 
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
         $scope.goToNextPage = function() {
-            $location.url('/refVerify');
+            $state.go('reference', {
+                user_id: userId
+            });
         };
 
         $scope.goToPreviousPage = function() {
-            $location.url('/education');
+            $state.go('education', {
+                user_id: userId
+            });
         }
 
         $scope.save = function() {
-            $http.post(appSettings.apiBase + '/saveDataPage', $scope.employmentDetail)
+            var url;
+            if (isNew) {
+                url = appSettings.apiBase + '/' + userId + '/Employment';
+            } else {
+                url = appSettings.apiBase + '/' + userId + '/Employment/' + $scope.employmentDetail._id;
+            }
+            $http.put(url, $scope.employmentDetail)
 
             .success(function(response) {
                 if (response.success) {
                     alert("Employment Details Updated successfully");
+                    $scope.employmentDetail = {};
+                    $scope.get();
                 } else {
-                    alert("Error Occured" + response.message);
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
                 }
 
             }).error(function(response) {
-                alert("Error Occured" + response.message);
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         }
 
@@ -56,43 +70,41 @@ angular.module('profileBuilder.employment', ['ngRoute']).controller('employmentD
             $scope.showTable = false;
             $scope.showForm = true;
             $scope.details = null;
+            isNew = true;
+            $scope.employmentDetail = {};
         };
 
         $scope.delete = function(id) {
-            // delete query from service
             $http.delete(appSettings.apiBase + '/getData/' + id).success(
                 function(response) {
                     if (response.success) {
                         $scope.get();
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
 
         $scope.edit = function(id) {
-            $http.get(appSettings.apiBase + '/getData/' + id).success(
+            $http.get(appSettings.apiBase + '/' + userId + '/Employment/' + id).success(
                 function(response) {
                     if (response.success) {
-                        $scope.employmentDetail = {
-                            'previousCompany': 'asdf',
-                            'fromYear': '2000',
-                            'toYear': '2010',
-                            'designation': 'asdf',
-                            'location': '12'
-                        }; // response
-                        // details
+                        $scope.employmentDetail = response.data;
                         $scope.showTable = false;
                         $scope.showForm = true;
-
+                        isNew = false;
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
 
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
         $scope.get();

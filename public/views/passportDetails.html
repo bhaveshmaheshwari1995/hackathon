@@ -5,68 +5,77 @@
 </head>
 <body>
 	<div class="container margin-top-20">
-	<div ng-include="'views/templates/header.html'"></div>
-        <div class="row">
-		<div class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
-                        <div class="panel panel-primary">
-			<div class="panel-heading text-center">
-			</div>
-			<div class="panel-body" ng-controller="breadCrumbCtrl">
-				<div ng-include="'views/templates/breadcrumb.html'"></div>
-				<form class="form-horizontal">
-					<div class="row">
-						<div class="col-xs-12 col-md-6 form-group">
-							<input type="text" class="form-control" id="passportNumber"
-								ng-model="passportNumber" placeholder="Passport #" required>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-12 col-md-6 form-group">
-							<input type="text" class="form-control" id="passportPlace"
-								ng-model="passportPlace" placeholder="Place of issue" required>
-						</div>
-					</div>
+		<div ng-include="'views/templates/header.html'"></div>
+		<div class="row">
+			<div
+				class="col-md-8 col-md-offset-2 col-sm-12  text-center margin-top-20">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center"></div>
+					<div class="panel-body" ng-controller="breadCrumbCtrl">
+						<div ng-include="'views/templates/breadcrumb.html'"></div>
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="passportNumber"
+										ng-model="passport.passportNumber" placeholder="Passport #" required>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="text" class="form-control" id="placeOfIssue"
+										ng-model="passport.placeOfIssue" placeholder="Place of issue" required>
+								</div>
+							</div>
 
-					<div class="row">
-						<div class="col-xs-12 col-md-6 form-group">
-							<input type="Date" class="form-control" id="validFrom"
-								ng-model="validFrom" placeholder="Valid From" class="col-md-6"
-								required>
-						</div>
-						<div class="col-xs-1 form-group"></div>
-						<div class="col-xs-12 col-md-6 form-group">
-							<input type="Date" class="form-control" id="validFrom"
-								ng-model="validTill" placeholder="Valid Till" class="col-md-6"
-								required>
-						</div>
-					</div>
-					<div class="row margin">
-						<div class="col-xs-offset-3  col-xs-5">
-							<button type="submit" class="md-raised md-primary md-button md-ink-ripple secondaryBut" ng-click="goToBankDetails()">
-								<span class="ng-scope">Skip for now</span> <i
-                                                                                class="fa fa-angle-double-right ng-scope"></i>
-							</button>
-						</div>
-					</div>
+							<div class="row">
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="date" class="form-control" id="validFrom"
+										ng-model="passport.validFrom" placeholder="Valid From" class="col-md-6"
+										required>
+								</div>
+								<div class="col-xs-1 form-group"></div>
+								<div class="col-xs-12 col-md-6 form-group">
+									<input type="date" class="form-control" id="validTill"
+										ng-model="passport.validTill" placeholder="Valid Till" class="col-md-6"
+										required>
+								</div>
+							</div>
+							<div class="row margin">
+								<div class="col-xs-offset-3  col-xs-5">
+									<button type="submit"
+										class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+										ng-click="goToNextPage()">
+										<span class="ng-scope">Skip for now</span> <i
+											class="fa fa-angle-double-right ng-scope"></i>
+									</button>
+								</div>
+							</div>
 
-					<div class="row margin">
-						<div class="col-xs-5">
-							<button type="submit" class="imd-raised md-primary md-button md-ink-ripple secondaryBut" ng-click="">
-								<i class="fa fa-angle-double-left ng-scope"></i> <span
-                                                                                class="ng-scope">Back</span>
-							</button>
-						</div>
-						<div class="col-xs-1"></div>
-						<div class="col-xs-5">
-							<button type="submit" class="md-raised md-primary md-button md-ink-ripple mainBut" ng-click="saveData()">	
-								<span class="ng-scope">Continue</span> <i
-                                                                                class="fa fa-angle-double-right ng-scope"></i>
-							</button>
-						</div>
+							<div class="row margin">
+								<div class="col-xs-5">
+									<button type="submit"
+										class="imd-raised md-primary md-button md-ink-ripple secondaryBut"
+										ng-click="goToPreviousPage()">
+										<i class="fa fa-angle-double-left ng-scope"></i> <span
+											class="ng-scope">Back</span>
+									</button>
+								</div>
+								<div class="col-xs-1"></div>
+								<div class="col-xs-5">
+									<button type="submit"
+										class="md-raised md-primary md-button md-ink-ripple mainBut"
+										ng-click="save()">
+										<span class="ng-scope">Save & Continue</span> <i
+											class="fa fa-angle-double-right ng-scope"></i>
+									</button>
+								</div>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>

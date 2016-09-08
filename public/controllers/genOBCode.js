@@ -1,16 +1,13 @@
 'use strict';
 
-angular.module('profileBuilder.login', ['ngRoute']).controller(
-    'loginCtrl',
+angular.module('profileBuilder.genOBCode', ['ngRoute']).controller(
+    'genOBCodeCtrl',
     function($rootScope, $scope, $http, $location, $routeParams, appSettings, $state) {
         $scope.authenticate = function() {
-            $http.post(appSettings.apiBase + '/authenticate', $scope.login)
+            $http.post(appSettings.apiHrBase + '/createOBcode', {numberOfItems: $scope.OBCount})
                 .success(function(response) {
                     if (response.success) {
-                        localStorage.setItem('token', response.token);
-                        localStorage.setItem('id', response.id);
-                        localStorage.setItem('newUser', 'false');
-                        $state.go('basic', {user_id: localStorage.getItem('id')});
+                      $scope.OBCodes = response.OBcodes;
                     } else {
                         var error = new AppError(response, $scope);
                         $scope.errorMessage = error.getErrorMessage();

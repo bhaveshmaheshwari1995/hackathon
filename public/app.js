@@ -17,7 +17,10 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.OBForms',
   'profileBuilder.refVerify',
   'profileBuilder.HRMenu',
-  'profileBuilder.profile',
+    'profileBuilder.newEmployee',
+  'profileBuilder.genOBCode',
+    'profileBuilder.profile',
+
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -30,52 +33,52 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     controller: 'loginCtrl'
   })
   .state('newEmployee',{
-    url:'/newEmployee',
+    url:'/new_employee',
     templateUrl: './views/newEmployee.html',
     controller: 'newEmployeeCtrl'
   })
   .state('FBConnect',{
-    url:'/FBConnect/:userId',
+    url:'/fb_connect/:user_id',
     templateUrl: './views/FBConnect.html',
     controller: 'fbCtrl'
   })
   .state('linkedInConnect',{
-    url:'/linkedInConnect/:userId',
+    url:'/linked_in_connect/:user_id',
     templateUrl: './views/LinkedInConnect.html',
     controller: 'linkedInCtrl'
   })
-  .state('registration1',{
-    url:'/registration1/:userId',
+  .state('basic',{
+    url:'/profile/:user_id/basic',
     templateUrl: './views/Registration_1.html',
     controller: 'registration1Ctrl'
   })
-  .state('registration2',{
-    url:'/registration2/:userId',
+  .state('contact',{
+    url:'/profile/:user_id/contact',
     templateUrl: './views/Registration_2.html',
       controller: 'registration1Ctrl2'
   })
   .state('education',{
-    url:'/education/:userId',
+    url:'/profile/:user_id/education',
     templateUrl: './views/Education.html',
     controller: 'educationCtrl'
   })
-  .state('employmentDetails',{
-    url:'/employmentDetails/:userId',
+  .state('employment',{
+    url:'/profile/:user_id/employment',
     templateUrl: './views/employmentDetails.html',
     controller: 'employmentDetailsCtrl'
   })
-  .state('refVerify',{
-    url:'/refVerify/:userId',
+  .state('reference',{
+    url:'/profile/:user_id/reference',
     templateUrl: './views/refVerify.html',
       controller: 'refVerifyCtrl'
   })
-  .state('passportDetails',{
-    url:'/passportDetails/:userId',
+  .state('passport',{
+    url:'/profile/:user_id/passport',
     templateUrl: './views/passportDetails.html',
       controller: 'passportDetailsCtrl'
   })
-  .state('bankDetails',{
-    url:'/bankDetails/:userId',
+  .state('bank',{
+    url:'/profile/:user_id/bank',
     templateUrl: './views/bankDetails.html',
       controller: 'bankDetailsCtrl'
   })
@@ -87,7 +90,7 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
   .state('genOBCode',{
     url:'/genOBCode/:userId',
     templateUrl: './views/genOBCode.html',
-      controller: 'genOBCodeCtrl'
+    controller: 'genOBCodeCtrl'
   })
   .state('OBForms',{
     url:'/OBForms/:userId',
@@ -108,6 +111,10 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     url:'/connect/:userId',
     templateUrl: './views/connectCtrl.html',
       controller: 'connectCtrl'
+  })
+  .state('lastPage',{
+    url:'/profile/complete',
+    templateUrl: './views/lastPage.html'
   })
 });
 

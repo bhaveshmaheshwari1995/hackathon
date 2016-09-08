@@ -1,53 +1,68 @@
 'use strict';
 angular.module('profileBuilder.refVerify', ['ngRoute']).controller('refVerifyCtrl',
-    function($scope, $http, $location, $routeParams, appSettings) {
+    function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
+        var isNew;
         $scope.get = function() {
 
-            $http.get(appSettings.apiBase + '/getData').success(
+            $http.get(appSettings.apiBase + '/' + userId + '/Reference').success(
                 function(response) {
                     if (response.success) {
-                        $scope.detailsList = [{
-                            'refName': 'asdf',
-                            'refDesignation': '2000',
-                            'refContact': '2010',
-                            'refDetail': 'asdf'
-                        }]; // response data
-                        if ($scope.detailsList) {
+                        $scope.detailsList = response.data;
+                        if ($scope.detailsList.length) {
                             $scope.showTable = true;
                             $scope.showForm = false;
                         } else {
                             $scope.showTable = false;
                             $scope.showForm = true;
+                            isNew = true;
+                            $scope.referenceDetail = {};
                         }
 
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
 
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
         $scope.goToNextPage = function() {
-            $location.url('/passportDetails');
+            $state.go('passport', {
+                user_id: userId
+            });
         };
 
         $scope.goToPreviousPage = function() {
-            $location.url('/employmentDetails');
+            $state.go('employee', {
+                user_id: userId
+            });
         }
 
         $scope.save = function() {
-            $http.post(appSettings.apiBase + '/saveDataPage', $scope.referenceDetail)
+            var url;
+            if (isNew) {
+                url = appSettings.apiBase + '/' + userId + '/Reference';
+            } else {
+                url = appSettings.apiBase + '/' + userId + '/Reference/' + $scope.referenceDetail._id;
+            }
+            $http.put(url, $scope.referenceDetail)
 
             .success(function(response) {
                 if (response.success) {
-                    alert("Education Details Updated successfully");
+                    alert("Reference Details Updated successfully");
+                    $scope.referenceDetail = {};
+                    $scope.get();
                 } else {
-                    alert("Error Occured" + response.message);
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
                 }
 
             }).error(function(response) {
-                alert("Error Occured" + response.message);
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         }
 
@@ -55,42 +70,41 @@ angular.module('profileBuilder.refVerify', ['ngRoute']).controller('refVerifyCtr
             $scope.showTable = false;
             $scope.showForm = true;
             $scope.details = null;
+            isNew = true;
+            $scope.referenceDetail = {};
         };
 
         $scope.delete = function(id) {
-            // delete query from service
             $http.delete(appSettings.apiBase + '/getData/' + id).success(
                 function(response) {
                     if (response.success) {
                         $scope.get();
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
 
         $scope.edit = function(id) {
-            $http.get(appSettings.apiBase + '/getData/' + id).success(
+            $http.get(appSettings.apiBase + '/' + userId + '/Reference/' + id).success(
                 function(response) {
                     if (response.success) {
-                        $scope.referenceDetail = {
-                            'refName': 'asdf',
-                            'refDesignation': '2000',
-                            'refContact': '2010',
-                            'refDetail': 'asdf'
-                        }; // response
-                        // details
+                        $scope.referenceDetail = response.data;
                         $scope.showTable = false;
                         $scope.showForm = true;
-
+                        isNew = false;
                     } else {
-                        alert("Error Occured" + response.message);
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
 
                     }
-                }).error(function(err) {
-                alert("Error Occured" + response.message);
+                }).error(function(response) {
+                var error = new AppError(response, $scope);
+                $scope.errorMessage = error.getErrorMessage();
             });
         };
         $scope.get();

@@ -5,34 +5,43 @@
 </head>
 <body>
 	<div class="container margin-top-20">
-	<div ng-include="'views/templates/header.html'"></div>
-        <div class="row">
-	<div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center margin-top-20">
-                <div class="panel panel-primary">
-			<div class="panel-heading text-center">New Aspirian?</div>
-			<div class="panel-body">
-				<div class="row" align="center">
-					<H4>Let us help you to fill your basic profile information
-						very quickly</H4>
-					<h5>Connect with your LinkedIn account.</h5>
+		<div ng-include="'views/templates/header.html'"></div>
+		<div class="row">
+			<div
+				class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center margin-top-20">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">New Aspirian?</div>
+					<div class="panel-body">
+						<div class="row" align="center">
+							<H4>Let us help you to fill your basic profile information
+								very quickly</H4>
+							<h5>Connect with your LinkedIn account.</h5>
+						</div>
+						<form class="form-horizontal">
+							<div class="col-xs-12 input-group margin-top-20">
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple linkedinBut"
+									ng-click="goToRegistration1()">
+									<i class="fa fa-linkedin-square" aria-hidden="true"></i> <span
+										class="ng-scope">Connect with Linked In</span>
+								</button>
+							</div>
+							<div class="col-xs-12 input-group margin-top-20">
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+									ng-click="goToNextPage()">
+									<span class="ng-scope">Skip</span> <i
+										class="fa fa-angle-double-right ng-scope"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-4"></div>
 				</div>
-				<form class="form-horizontal">
-						<div class="col-xs-12 input-group margin-top-20">
-							<button type="submit" class="md-raised md-primary md-button md-ink-ripple linkedinBut" ng-click="goToRegistration1()">
-								<i class="fa fa-linkedin-square" aria-hidden="true"></i>
-						<span class="ng-scope">Connect with Linked In</span>
-							</button>
-						</div>
-						<div class="col-xs-12 input-group margin-top-20">
-							<button type="submit" class="md-raised md-primary md-button md-ink-ripple secondaryBut" ng-click="goToRegistration1()"> 
-						<span class="ng-scope">Skip</span>
-                                                <i class="fa fa-angle-double-right ng-scope"></i>
-						</div>
-				</form>
 			</div>
-			<div class="col-md-4"></div>
 		</div>
 	</div>
+	<div ng-include="'views/templates/footer.html'"></div>
 </body>
 
 </html>
