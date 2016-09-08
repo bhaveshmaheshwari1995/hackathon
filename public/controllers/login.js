@@ -1,18 +1,22 @@
 'use strict';
 
-angular.module('profileBuilder.login', ['ngRoute']).controller('loginCtrl',
-    function($rootScope, $scope, $http, $location, $routeParams, appSettings) {
+angular.module('profileBuilder.login', ['ngRoute']).controller(
+    'loginCtrl',
+    function($rootScope, $scope, $http, $location, $routeParams, appSettings, $state) {
         $scope.authenticate = function() {
             $http.post(appSettings.apiBase + '/authenticate', $scope.login)
                 .success(function(response) {
                     if (response.success) {
                         localStorage.setItem('token', response.token);
                         localStorage.setItem('id', response.id);
+                        $state.go('basic', {user_id: localStorage.getItem('id')});
                     } else {
-                        $scope.showError = response.message;
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
                     }
                 }).error(function(response) {
-                  $rootScope.errorResponse(response);
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
                 });
         };
     });

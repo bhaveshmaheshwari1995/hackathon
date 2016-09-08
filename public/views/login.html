@@ -4,18 +4,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container margin-top-80">
+	<div class="container margin-top-20">
 		<!--div class="row" align="center"-->
+	<div ng-include="'views/templates/header.html'"></div>
+	<div class="row">
 		<div
-			class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
-			<img src="images/aspire-logo.jpg">
+			class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center margin-top-20">
 			<div class="panel panel-primary">
 				<!--col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2"-->
 				<div class="panel-heading text-center">Sign In</div>
 				<div class="panel-body">
+					<div class="bg-danger">{{errorMessage}}</div>
 					<form class="form-horizontal">
 						<!--div class="form-group"-->
-						<div class="col-xs-12 input-group">
+						<div class="col-xs-12 input-group margin-top-20">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="email"
 								class="form-control" id="inputEmail" ng-model="login.email"
@@ -39,8 +41,8 @@
 									class="fa fa-angle-double-right ng-scope"></i>
 								<!--Sign in <span class="glyphicon glyphicon-play"></span-->
 							</button>
-							<a class="btn btn-block" href="#/newEmployee"> New Aspirian?
-								Start Here <span class="glyphicon glyphicon-hand-up"></span>
+							<a class="btn btn-block" ui-sref="basic"> New Aspirian? Start
+								Here <span class="glyphicon glyphicon-hand-up"></span>
 							</a>
 						</div>
 						<!--/div-->

@@ -1,25 +1,25 @@
 angular.module('profileBuilder.breadCrumb', []).controller('breadCrumbCtrl', function($scope) {
     $scope.menuItems = [{
         'name': 'Basic',
-        'path': '/registration1'
+        'path': 'basic'
     }, {
         'name': 'Contact',
-        'path': '/registration2'
+        'path': 'contact'
     }, {
         'name': 'Education',
-        'path': '/education'
+        'path': 'education'
     }, {
         'name': 'Employment',
-        'path': '/employmentDetails'
+        'path': 'employment'
     }, {
         'name': 'References',
-        'path': '/refVerify'
+        'path': 'reference'
     }, {
         'name': 'Passport',
-        'path': '/passportDetails'
+        'path': 'passport'
     }, {
         'name': 'Bank & IT',
-        'path': '/bankDetails'
+        'path': 'bank'
     }];
     $scope.activeMenu = $scope.menuItems[0].name;
     $scope.setActive = function(menuItem) {

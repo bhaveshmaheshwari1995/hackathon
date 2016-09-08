@@ -1,73 +1,50 @@
 'use strict';
-angular.module('profileBuilder.registration1', ['ngRoute'])
-.controller('registration1Ctrl',function($scope,$http,$location,$routeParams, appSettings) {
-	var userId = $routeParams.userId;
+angular.module('profileBuilder.basic', ['ngRoute'])
+    .controller('registration1Ctrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
+        var userId = localStorage.getItem('id');
 
-  $http.get(appSettings.apiBase + '/getData/'+userId)
-  .success(function(response) {
-  	if(response.success){
-      $scope.userData=response.userData;
-      localStorage.setItem('userDetails',JSON.stringify(response.userData));
-      $scope.firstName = $scope.userData.firstName;
-  	  $scope.lastName = $scope.userData.lastName;
-  	  $scope.gender = $scope.userData.gender;
-  	  $scope.date = $scope.userData.date;
-  	  $scope.mobileNumber = $scope.userData.mobileNumber;
-  	  $scope.email = $scope.userData.email;
-  	  $scope.currentAddress = $scope.userData.currentAddress;
-  	  $scope.permanentAddress = $scope.userData.permanentAddress;
-  	}
-  	else{
-  		alert('Error1: ' + err);
+        $scope.get = function() {
+            $http.get(appSettings.apiBase + '/' + userId + '/basic')
+                .success(function(response) {
+                    if (response.success) {
+                        $scope.basicDetails = response.data;
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
+        }
 
-  	}
-  })
-  .error(function(err) {
-    alert('Error2: ' + err);
-  });
-  
+        $scope.updateAddress = function() {
+            $scope.basicDetails.permanentAddress = angular.copy($scope.basicDetails.currentAddress);
+        }
+        
+        $scope.goToNextPage = function() {
+            $state.go('contact', {user_id: userId});
+        }
 
-$scope.saveRegisterationData1 = function(){
-$scope.saveData();
-};
+        $scope.save = function() {
+            $http.put(appSettings.apiBase + '/' + userId + '/basic', $scope.basicDetails)
+                .success(function(response) {
+                    if (response.success) {
+                        alert("User Details Updated successfully");
+                        $scope.goToNextPage();
+                    } else {
+                        var error = new AppError(response, $scope);
+                        $scope.errorMessage = error.getErrorMessage();
+                    }
 
-$scope.goToLinkedIn = function(){
-  $location.url('/linkedInConnect');
+                })
+                .error(function(response) {
+                    var error = new AppError(response, $scope);
+                    $scope.errorMessage = error.getErrorMessage();
+                });
+        }
+        
+        $scope.get();
 
-};
-
-$scope.saveData=function(){
-
-  	$scope.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-    var data = {
-        firstName : $scope.firstName,
-        lastName : $scope.lastName,
-        gender : $scope.gender,
-        date : $scope.date,
-        mobileNumber : $scope.mobileNumber,
-        email : $scope.email,
-        currentAddress : $scope.currentAddress,
-        permanentAddress : $scope.permanentAddress
-    };
-
-    $http.put(appSettings.apiBase + '/saveDataPage1', data)
-    .success(function(response) {
-     if(response.success){
-					alert("User Details Updated successfully");
-					  $location.url('/registration2/'+userId);
-				}
-				else
-				{
-					alert("Error Occured"+response.message);
-				}
-
-    })
-    .error(function(response) {
-      alert("Error Occured"+response.message);
     });
-  }
-
-});
-
-  
