@@ -20,11 +20,7 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.newEmployee',
   'profileBuilder.genOBCode',
   'profileBuilder.profile',
-<<<<<<< HEAD
-
-=======
   'profileBuilder.reports'
->>>>>>> 46b4595d87080cf4f3816d21b7421cb2827242c5
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
