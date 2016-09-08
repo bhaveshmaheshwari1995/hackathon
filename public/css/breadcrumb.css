@@ -34,19 +34,19 @@
 }
 
 .breadcrumb-arrow li:last-child a::before {
-	border-left: 9px solid #3bafda;
+	border-left: 9px solid #b9b9b9;
 }
 
 .breadcrumb-arrow li:last-child a::after {
-	border-left: 0 solid #3bafda;
+	border-left: 0 solid #b9b9b9;
 }
 
 .breadcrumb-arrow li:last-child a.active:after {
-    border-left: 9px solid turquoise
+    border-left: 9px solid #8D599F
 }
 
 .breadcrumb-arrow li:last-child a.active:before {
-    border-left: 9px solid turquoise
+    border-left: 9px solid #8D599F
 }
 
 .breadcrumb-arrow li:first-child a {
@@ -56,8 +56,8 @@
     position: relative;
     color: #fff;
     text-decoration: none;
-    background-color: #3bafda;
-    border: 1px solid #3bafda
+    background-color: #b9b9b9;
+    border: 1px solid #b9b9b9
 }
 .breadcrumb-arrow li:first-child a {
     padding-left: 10px
@@ -74,20 +74,20 @@
 .breadcrumb-arrow li a.active:before {
     right: -10px;
     z-index: 3;
-    border-left-color: turquoise;
+    border-left-color: #8D599F;
     border-left-style: solid;
     border-left-width: 0
 }
 .breadcrumb-arrow li a.active:after {
     right: -11px;
     z-index: 2;
-    border-left: 15px solid turquoise
+    border-left: 15px solid #8D599F
 }
 
 .breadcrumb-arrow li a:before {
     right: -10px;
     z-index: 3;
-    border-left-color: #3bafda;
+    border-left-color: #b9b9b9;
     border-left-style: solid;
     border-left-width: 14px
 }
@@ -96,23 +96,23 @@
     z-index: 2;
 }
 .breadcrumb-arrow li a:focus, .breadcrumb-arrow li a:hover {
-    background-color: #4fc1e9;
-    border: 1px solid #4fc1e9
+    background-color: #555555;
+    border: 1px solid #555555
 }
 .breadcrumb-arrow li a:focus:before, .breadcrumb-arrow li a:hover:before {
-    border-left-color: #4fc1e9
+    border-left-color: #555555
 }
 .breadcrumb-arrow li a:active {
-    background-color: #2494be;
-    border: 1px solid #2494be
+    background-color: #a872bb;
+    border: 1px solid #a872bb
 }
 .breadcrumb-arrow li a:active:after, .breadcrumb-arrow li a:active:before {
-    border-left-color: #2494be
+    border-left-color: #a872bb
 }
 .breadcrumb-arrow li span {
     color: #434a54
 }
 .breadcrumb-arrow li a.active {
-    background-color: turquoise;
-    border: 1px solid turquoise
+    background-color: #8D599F;
+    border: 1px solid #8D599F
 }

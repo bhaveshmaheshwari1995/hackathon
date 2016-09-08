@@ -6,41 +6,46 @@
 <body>
 	<div class="container margin-top-80">
 		<!--div class="row" align="center"-->
- <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
+		<div
+			class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
 			<img src="images/aspire-logo.jpg">
-		<div class="panel panel-primary"><!--col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2"-->
-			<div class="panel-heading text-center">Sign In</div>
-			<div class="panel-body">
-				<form class="form-horizontal">
-					<!--div class="form-group"-->
+			<div class="panel panel-primary">
+				<!--col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2"-->
+				<div class="panel-heading text-center">Sign In</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<!--div class="form-group"-->
 						<div class="col-xs-12 input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input type="email"
-								class="form-control" id="inputEmail" ng-model="userEmail"
+								class="form-control" id="inputEmail" ng-model="login.email"
 								placeholder="Email" required="true">
 						</div>
-					<!--/div-->
-					<!--div class="form-group"-->
+						<!--/div-->
+						<!--div class="form-group"-->
 						<div class="col-xs-12 input-group margin-top-20">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input type="password"
-								class="form-control" id="password" ng-model="userPassword"
+								class="form-control" id="password" ng-model="login.password"
 								placeholder="Password" required>
 						</div>
-					<!--/div>
+						<!--/div>
 					<div class="form-group"-->
 						<div class="col-xs-12 input-group margin-top-20">
-							<button type="submit" class="md-raised md-primary md-button md-ink-ripple mainBut"
-								ng-click="authenticate()"><span class="ng-scope">Sign In </span>
-                                                                <i class="fa fa-angle-double-right ng-scope"></i>
+							<button type="submit"
+								class="md-raised md-primary md-button md-ink-ripple mainBut"
+								ng-click="authenticate()">
+								<span class="ng-scope">Sign In </span> <i
+									class="fa fa-angle-double-right ng-scope"></i>
 								<!--Sign in <span class="glyphicon glyphicon-play"></span-->
 							</button>
 							<a class="btn btn-block" href="#/newEmployee"> New Aspirian?
 								Start Here <span class="glyphicon glyphicon-hand-up"></span>
 							</a>
 						</div>
-					<!--/div-->
-				</form>
+						<!--/div-->
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
