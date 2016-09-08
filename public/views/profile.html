@@ -39,10 +39,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container margin-top-60">
-		<div class="row" align="center">
-			<img src="images/aspire-logo.jpg">
-		</div>
+	<div class="container margin-top-20">
+	<div ng-include="'views/templates/header.html'"></div>
+                <div class="row">
 		<div class="col-md-10 col-md-offset-1  text-center margin-top-10">
 		  
 		  <div >
@@ -77,7 +76,7 @@
                     	<div class="panel panel-primary">
      							<div class="panel-heading"><i class="fa fa-book "></i>Experience</div>
 						      <div class="panel-body">
-						      <div ng-repeat= "exp in userDetails.previousExp">
+						      <div ng-repeat= "exp in userDetails.experience">
                         <p class="text-muted">{{exp.previousCompanyName}}</p>
                         <p class="text-muted">{{exp.location}}</p>
                         <p class="text-muted">{{exp.designation}}</p>
@@ -96,7 +95,7 @@
                     		<div class="panel panel-primary">
      							<div class="panel-heading"><i class="fa fa-book "></i>Certification</div>
 						      <div class="panel-body">
-						      <div ng-repeat= "certification in userDetails.linkedinCertification">
+						      <div ng-repeat= "certification in userDetails.certification">
 		                        <p class="text-muted">{{certification.certificationName}}</p>
 		                        <p class="text-muted">{{certification.certificationYear}}</p>
 		                      </div>
@@ -107,7 +106,7 @@
                         <div class="panel panel-primary">
      							<div class="panel-heading"><i class="fa fa-book "></i>Specialities</div>
 						      	<div class="panel-body">
-								  <div ng-repeat= "skill in userDetails.linkedinSkills">
+								  <div ng-repeat= "skill in userDetails.skills">
 				                  	<p class="text-muted">{{skill.skillName}}</p>
 			                    	</div>
                         		</div>
@@ -121,8 +120,10 @@
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div>
-
 	</div>
+	</div>
+<div ng-include="'views/templates/footer.html'"></div>
+
 </body>
 
 </html>
