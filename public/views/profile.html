@@ -13,11 +13,47 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive" src="/images/home/photo2.jpg" alt="{{userDetails.firstName}} {{userDetails.lastName}}">
+                <div class="col-md-4"><img class="profile-user-img img-responsive" src={{userDetails.dateOfJoining}} alt="{{userDetails.firstName}} {{userDetails.lastName}}"></div>
+                <div class="col-md-4">
                     <h3 class="profile-username text-center">{{userDetails.firstName +" "+userDetails.lastName}}</h3>
                     <h4>{{userDetails.emailId}}</h4>
+                    <p class="text-muted text-center">{{userDetails.dateOfJoining}}</p>
                     <p class="text-muted text-center">{{userDetails.mobileNumber}}</p>
                     <p class="text-muted text-center">{{userDetails.dateOfBirth}}</p>
+                </div>
+                <div class="col-md-4 margin-top-20">
+                <div >
+                        <div class="col-xs-12 col-md-10 col-md-offset-1 form-group" ng-hide="{{emailAvailable}}">
+                                    <input type="email" class="form-control" id="emailId"
+                                        ng-model="emailId"
+                                        placeholder="Aspire Email Address" required>
+
+                                        <div class="col-xs-offset-1 col-xs-5">
+                                <button type="submit"
+                                    class="md-raised md-primary md-button md-ink-ripple mainBut"
+                                    ng-click="saveEmailId()">
+                                    Save 
+                                    </button>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 col-md-offset-1 form-group" ng-hide="{{DOJAvailable}}">
+                                    <input type="date" class="form-control" id="dateOfJoining"
+                                        ng-model="dateOfJoining"
+                                        placeholder="Date Of Joining" class="col-md-6" required>
+                                        <div class="col-xs-offset-1 col-xs-5">
+                                <button type="submit"
+                                    class="md-raised md-primary md-button md-ink-ripple mainBut"
+                                    ng-click="saveDOJ()">
+                                    Save 
+                                    </button>
+                        </div>
+                        </div>
+                        
+                </div>
+                </div>
+                    
+                    
+                    
                     <hr>
                     <div class="box-body" >
                     	<div class="col-md-4">
@@ -80,6 +116,24 @@
                     	</div>
                         
                     </div>
+                    <div class="col-md-offset-7 col-md-4">
+
+                        <div class="col-md-offset-2 col-md-4">
+                                    <button type="submit"
+                                        class="md-raised md-primary md-button md-ink-ripple mainBut"
+                                        ng-click="approve()">
+                                        Approve 
+                                        </button>
+                        </div>
+                        <div class="col-md-offset-2 col-md-4">
+                                    <button type="submit"
+                                        class="md-raised md-primary md-button md-ink-ripple mainBut"
+                                        ng-click="requestModify()">
+                                        Change Status 
+                                        </button>
+                        </div>
+                    </div>
+
 
                     
                 </div><!-- /.box-body -->
