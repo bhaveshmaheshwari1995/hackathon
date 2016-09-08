@@ -17,8 +17,10 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.OBForms',
   'profileBuilder.refVerify',
   'profileBuilder.HRMenu',
-  'profileBuilder.newEmployee',
-  'profileBuilder.genOBCode'
+    'profileBuilder.newEmployee',
+  'profileBuilder.genOBCode',
+    'profileBuilder.profile',
+
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
