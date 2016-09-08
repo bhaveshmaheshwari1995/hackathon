@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container margin-top-80">
+		<div class="row" align="center">
+			<img src="images/aspire-logo.jpg">
+		</div>
+		<div class= "col-md-3">
+		
+		</div>
+		<div class="col-md-4 col-sm-8 col-sm-offset-1 text-center">
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-xs-12 input-group">
+							<input type="email"
+								class="form-control" id="inputEmail" ng-model="userEmail"
+								placeholder="search" required="true">
+						</div>
+					</div>
+					
+					<div>
+						<table class="table table-bordered">
+						    <thead>
+						      <tr>
+						        <th>OB Code</th>
+						        <th>Name</th>
+						        <th>View</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						    <tr ng-repeat = "OB in OBs " >
+						        <td>{{OB.name}}</td>
+						        <td>{{OB.email}}</td>
+						        <td ng-click= "goToProfile(OB.id)">View</td>
+						      </tr>
+						      <!-- <tr dir-paginate = "OB in OBs | itemsPerPage: 1" >
+						        <td>{{OB.name}}</td>
+						        <td>{{OB.email}}</td>
+						        <td ng-click= "goToProfile(OB.id)">View</td>
+						      </tr> -->
+						    </tbody>
+						  </table>
+						  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/dirPagination.tpl.html"></dir-pagination-controls>
+
+					</div>
+					
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</body>
+
+</html>
+
+

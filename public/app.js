@@ -13,7 +13,10 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.passportDetails',
   'profileBuilder.bankDetails',
   'profileBuilder.employment',
-  'profileBuilder.refVerify'
+  'profileBuilder.employees',
+  'profileBuilder.OBForms',
+  'profileBuilder.refVerify',
+  'profileBuilder.HRMenu',
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -75,10 +78,35 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     templateUrl: './views/bankDetails.html',
       controller: 'bankDetailsCtrl'
   })
+  .state('profile',{
+    url:'/profile/:userId',
+    templateUrl: './views/profile.html',
+      controller: 'profileCtrl'
+  })
   .state('genOBCode',{
     url:'/genOBCode/:userId',
     templateUrl: './views/genOBCode.html',
       controller: 'genOBCodeCtrl'
+  })
+  .state('OBForms',{
+    url:'/OBForms/:userId',
+    templateUrl: './views/OBForm.html',
+    controller: 'OBFormsCtrl'
+  })
+  .state('employees',{
+    url:'/employees/:userId',
+    templateUrl: './views/employees.html',
+    controller: 'employeesCtrl'
+  })
+  .state('todo',{
+    url:'/todo/:userId',
+    templateUrl: './views/todoCtrl.html',
+      controller: 'todoCtrl'
+  })
+  .state('connect',{
+    url:'/connect/:userId',
+    templateUrl: './views/connectCtrl.html',
+      controller: 'connectCtrl'
   })
 });
 app.constant('appSettings', appConfig);
