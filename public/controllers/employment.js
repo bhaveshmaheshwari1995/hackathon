@@ -1,5 +1,5 @@
 'use strict';
-angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationCtrl',
+angular.module('profileBuilder.employment', [ 'ngRoute' ]).controller('employmentDetailsCtrl',
 		function($scope, $http, $location, $routeParams, appSettings) {
 			$scope.get = function () {
 				
@@ -7,12 +7,11 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 						function(response) {
 							if (response.success) {
 								$scope.detailsList = [{ 
-									'school': 'asdf', 
+									'previousCompany': 'asdf', 
 									'fromYear': '2000', 
 									'toYear':'2010',
-									'board': 'asdf',
-									'cgpa': '12',
-									'course': 'sslc'}]; // response data
+									'designation': 'asdf',
+									'location': '12'}]; // response data
 							if ($scope.detailsList) {
 								$scope.showTable = true;
 								$scope.showForm = false;
@@ -30,19 +29,19 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 				});
 			};
 			$scope.goToNextPage = function() {
-				$location.url('/employmentDetails');
+				$location.url('/refVerify');
 			};
 			
 			$scope.goToPreviousPage = function(){
-				$location.url('/registration2');
+				$location.url('/education');
 			}
 			
 			$scope.save = function () {
-				$http.put(appSettings.apiBase + '/saveDataPage', $scope.educationDetail)
+				$http.put(appSettings.apiBase + '/saveDataPage', $scope.employmentDetail)
 
 				.success(function(response) {
 					if (response.success) {
-						alert("Education Details Updated successfully");
+						alert("Employment Details Updated successfully");
 					} else {
 						alert("Error Occured" + response.message);
 					}
@@ -76,13 +75,12 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 				$http.get(appSettings.apiBase + '/getData/' + id).success(
 						function(response) {
 							if (response.success) {
-								$scope.educationDetail = { 
-										'school': 'asdf', 
-										'fromYear': '2000', 
-										'toYear':'2010',
-										'board': 'asdf',
-										'cgpa': '12',
-										'course': 'sslc'}; // response
+								$scope.employmentDetail = { 
+									'previousCompany': 'asdf', 
+									'fromYear': '2000', 
+									'toYear':'2010',
+									'designation': 'asdf',
+									'location': '12'}; // response
 															// details
 								$scope.showTable = false;
 								$scope.showForm = true;

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationCtrl',
+angular.module('profileBuilder.refVerify', [ 'ngRoute' ]).controller('refVerifyCtrl',
 		function($scope, $http, $location, $routeParams, appSettings) {
 			$scope.get = function () {
 				
@@ -7,12 +7,10 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 						function(response) {
 							if (response.success) {
 								$scope.detailsList = [{ 
-									'school': 'asdf', 
-									'fromYear': '2000', 
-									'toYear':'2010',
-									'board': 'asdf',
-									'cgpa': '12',
-									'course': 'sslc'}]; // response data
+									'refName': 'asdf', 
+									'refDesignation': '2000', 
+									'refContact':'2010',
+									'refDetail': 'asdf'}]; // response data
 							if ($scope.detailsList) {
 								$scope.showTable = true;
 								$scope.showForm = false;
@@ -30,15 +28,15 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 				});
 			};
 			$scope.goToNextPage = function() {
-				$location.url('/employmentDetails');
+				$location.url('/passportDetails');
 			};
 			
 			$scope.goToPreviousPage = function(){
-				$location.url('/registration2');
+				$location.url('/employmentDetails');
 			}
 			
 			$scope.save = function () {
-				$http.put(appSettings.apiBase + '/saveDataPage', $scope.educationDetail)
+				$http.put(appSettings.apiBase + '/saveDataPage', $scope.referenceDetail)
 
 				.success(function(response) {
 					if (response.success) {
@@ -76,13 +74,11 @@ angular.module('profileBuilder.education', [ 'ngRoute' ]).controller('educationC
 				$http.get(appSettings.apiBase + '/getData/' + id).success(
 						function(response) {
 							if (response.success) {
-								$scope.educationDetail = { 
-										'school': 'asdf', 
-										'fromYear': '2000', 
-										'toYear':'2010',
-										'board': 'asdf',
-										'cgpa': '12',
-										'course': 'sslc'}; // response
+								$scope.referenceDetail = { 
+										'refName': 'asdf', 
+										'refDesignation': '2000', 
+										'refContact':'2010',
+										'refDetail': 'asdf'}; // response
 															// details
 								$scope.showTable = false;
 								$scope.showForm = true;

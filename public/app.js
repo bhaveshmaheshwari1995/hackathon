@@ -12,13 +12,15 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.breadCrumb',
   'profileBuilder.passportDetails',
   'profileBuilder.bankDetails',
+  'profileBuilder.employment',
+  'profileBuilder.refVerify'
 ]);
 app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/login'});
 	 $routeProvider.when('/login', {
       templateUrl: './views/login.html',
       controller: 'loginCtrl'
-      });  
+      }); 
      $routeProvider.when('/newEmployee', {
       templateUrl: './views/newEmployee.html',
       controller: 'newEmployeeCtrl'
@@ -39,7 +41,7 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
       templateUrl: './views/Registration_2.html',
       controller: 'registration1Ctrl2'
       });
-      $routeProvider.when('/education/:userId', {
+      $routeProvider.when('/education', {
       templateUrl: './views/Education.html',
       controller: 'educationCtrl'
       });  
