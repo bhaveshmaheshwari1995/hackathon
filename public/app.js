@@ -20,7 +20,8 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.newEmployee',
   'profileBuilder.genOBCode',
   'profileBuilder.profile',
-  'profileBuilder.reports'
+  'profileBuilder.reports',
+  'profileBuilder.rolestar',
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
