@@ -12,6 +12,8 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.breadCrumb',
   'profileBuilder.passportDetails',
   'profileBuilder.bankDetails',
+  'profileBuilder.employment',
+  'profileBuilder.refVerify'
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -51,7 +53,7 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
   .state('education',{
     url:'/education/:userId',
     templateUrl: './views/Education.html',
-      controller: 'educationCtrl'
+    controller: 'educationCtrl'
   })
   .state('employmentDetails',{
     url:'/employmentDetails/:userId',

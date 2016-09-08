@@ -5,7 +5,6 @@ angular.module('profileBuilder.login', ['ngRoute'])
 
 $scope.authenticate = function(){
   var userId = $scope.userEmail;
-  alert("email "+userId);
   if(!(userId === undefined))
   {
     $location.url('/FBConnect/'+userId);

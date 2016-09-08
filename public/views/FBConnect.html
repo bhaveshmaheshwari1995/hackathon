@@ -4,33 +4,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1453631251561311";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 	<div class="container margin-top-80">
-		<div class="row" align="center">
-			<img src="images/aspire-logo.jpg">
-		</div>
-		<div
-			class="panel-info col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
-			<div class="panelHeading text-center">New Employee?</div>
+<div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
+                        <img src="images/aspire-logo.jpg">
+                <div class="panel panel-primary">
+
+			<div class="panel-heading text-center">New Aspirian?</div>
 			<div class="panel-body">
 				<div class="row" align="center">
-					<H5>Let us help you to fill your basic profile information
-						very quickly</H5>
+					<h4>Let us help you to fill your basic profile information very quickly.</h4>
+						<h5>Connect with your Facebook account.</h5>
 				</div>
 				<form class="form-horizontal">
-					<div class="form-group">
 						<div class="col-xs-12 input-group margin-top-20">
-							<button type="submit" class="btn btn-block" ng-click="connectToFB()">
-								Connect with Facebook <span class="fa fa-facebook"></span>
+							<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+						</div>
+						<div class="col-xs-12 input-group margin-top-20">
+							<button type="submit" class="md-raised md-primary md-button md-ink-ripple secondaryBut" ng-click="goToLinkedIn()">
+								<span class="ng-scope">Skip</span>
+                                                                <i class="fa fa-angle-double-right ng-scope"></i>
 							</button>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12 input-group margin-top-20">
-							<button type="submit" class="btn btn-block" ng-click="goToLinkedIn()">
-								Skip <span class="glyphicon glyphicon-arrow-right"></span>
-							</button>
-						</div>
-					</div>
 				</form>
 			</div>
 			<div class="col-md-4">
