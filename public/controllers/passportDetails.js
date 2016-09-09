@@ -1,7 +1,7 @@
 'use strict';
 angular.module('profileBuilder.passportDetails', ['ngRoute'])
-    .controller('passportDetailsCtrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
-            var userId = localStorage.getItem('id');
+    .controller('passportDetailsCtrl', function($scope, $http, $location, $routeParams, appSettings, $state, $stateParams) {
+            var userId = $stateParams.user_id;
             var isNew;
             $scope.get = function() {
                     $http.get(appSettings.apiBase + '/' + userId + '/Passport')

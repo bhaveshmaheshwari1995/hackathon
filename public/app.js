@@ -4,7 +4,6 @@
 var app = angular.module('profileBuilder', [
   'ui.router',
   'profileBuilder.login',
-  'profileBuilder.FBConnect',
   'profileBuilder.linkedInConnect',
   'profileBuilder.basic',
   'profileBuilder.contact',
@@ -23,6 +22,7 @@ var app = angular.module('profileBuilder', [
   'profileBuilder.reports',
   'profileBuilder.rolestar',
   'profileBuilder.lastPage',
+  'profileBuilder.lastPageCtrl'
 ]);
 app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
 	
@@ -46,6 +46,11 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
   })
   .state('linkedInConnect',{
     url:'/linked_in_connect/:user_id',
+    templateUrl: './views/LinkedInConnect.html',
+    controller: 'linkedInCtrl'
+  })
+  .state('linkedInConnectStatus',{
+    url:'/linked_in_connect/:user_id/:status',
     templateUrl: './views/LinkedInConnect.html',
     controller: 'linkedInCtrl'
   })
@@ -115,7 +120,7 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
       controller: 'connectCtrl'
   })
   .state('lastPage',{
-    url:'/profile/complete',
+    url:'/new-user/complete',
     templateUrl: './views/lastPage.html',
     controller: 'lastPageCtrl'
   })

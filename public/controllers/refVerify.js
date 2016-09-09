@@ -1,7 +1,7 @@
 'use strict';
 angular.module('profileBuilder.refVerify', ['ngRoute']).controller('refVerifyCtrl',
-    function($scope, $http, $location, $routeParams, appSettings, $state) {
-        var userId = localStorage.getItem('id');
+    function($scope, $http, $location, $routeParams, appSettings, $state, $stateParams) {
+		var userId = $stateParams.user_id;
         var isNew;
         $scope.get = function() {
 

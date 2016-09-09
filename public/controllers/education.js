@@ -1,7 +1,7 @@
 'use strict';
 angular.module('profileBuilder.education', ['ngRoute']).controller('educationCtrl',
-    function($scope, $http, $location, $routeParams, appSettings, $state) {
-        var userId = localStorage.getItem('id');
+    function($scope, $http, $location, $stateParams, appSettings, $state) {
+        var userId = $stateParams.user_id;
         var isNew;
         $scope.get = function() {
             $http.get(appSettings.apiBase + '/' + userId + '/Education').success(

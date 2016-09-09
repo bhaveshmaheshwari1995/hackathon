@@ -1,7 +1,7 @@
 'use strict';
 angular.module('profileBuilder.bankDetails', ['ngRoute'])
-    .controller('bankDetailsCtrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
-        var userId = localStorage.getItem('id');
+    .controller('bankDetailsCtrl', function($scope, $http, $location, $stateParams, appSettings, $state) {
+        var userId = $stateParams.user_id;
         var isNew;
         $scope.get = function() {
             $http.get(appSettings.apiBase + '/' + userId + '/Bank')
@@ -28,17 +28,14 @@ angular.module('profileBuilder.bankDetails', ['ngRoute'])
             });
         };
         $scope.goToNextPage = function() {
-            if (localStorage.getItem('newUser') == 'true') {console.log("if");
-                alert("Your all details have been saved successfully!!!");
-                localStorage.clear();
+            if (localStorage.getItem('newUser') == 'true') {
                 $state.go('lastPage');
-            } else {console.log("else");
+            } else {
                 alert("Your all details have been saved successfully!!!");
                 $state.go('profile', {
                     userId: userId
                 });
             }
-
         };
 
         $scope.save = function() {

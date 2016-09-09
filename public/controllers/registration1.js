@@ -1,7 +1,7 @@
 'use strict';
 angular.module('profileBuilder.basic', ['ngRoute'])
-    .controller('registration1Ctrl', function($scope, $http, $location, $routeParams, appSettings, $state) {
-        var userId = localStorage.getItem('id');
+    .controller('registration1Ctrl', function($scope, $http, $location, $stateParams, appSettings, $state) {
+    	var userId = $stateParams.user_id;
 
         $scope.get = function() {
             $http.get(appSettings.apiBase + '/' + userId + '/basic')

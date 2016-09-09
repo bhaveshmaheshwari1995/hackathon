@@ -17,20 +17,29 @@
 								very quickly</H4>
 							<h5>Connect with your LinkedIn account.</h5>
 						</div>
+						<div class="bg-danger" ng-show="{{error}}">Authorization with Linkedin Failed! Please try again</div>
+						<div class="bg-success" ng-show="{{success}}">Authorization with Linkedin Successful!</div>
 						<form class="form-horizontal">
-							<div class="col-xs-12 input-group margin-top-20">
-								<button type="submit"
-									class="md-raised md-primary md-button md-ink-ripple linkedinBut"
-									ng-click="goToRegistration1()">
+							<div class="col-xs-12 input-group margin-top-20" ng-hide={{success}}>
+								<a type="submit"
+									class="md-raised md-primary md-button md-ink-ripple linkedinBut" ng-href="{{linkedinUrl}}">
 									<i class="fa fa-linkedin-square" aria-hidden="true"></i> <span
 										class="ng-scope">Connect with LinkedIn</span>
-								</button>
+								</a>
 							</div>
-							<div class="col-xs-12 input-group margin-top-20">
+							<div class="col-xs-12 input-group margin-top-20" ng-hide={{success}}>
 								<button type="submit"
 									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
 									ng-click="goToNextPage()">
 									<span class="ng-scope">Skip</span> <i
+										class="fa fa-angle-double-right ng-scope"></i>
+								</button>
+							</div>
+							<div class="col-xs-12 input-group margin-top-20" ng-show={{success}}>
+								<button type="submit"
+									class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+									ng-click="goToNextPage()">
+									<span class="ng-scope">Continue</span> <i
 										class="fa fa-angle-double-right ng-scope"></i>
 								</button>
 							</div>
