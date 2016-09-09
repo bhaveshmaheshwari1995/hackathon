@@ -10,6 +10,7 @@ angular.module('profileBuilder.reports', ['ngRoute'])
                   $('#container')
                       .highcharts(
                           {
+			    colors: ["#90ee7e","#7cb5ec",  "#f7a35c"],
                             chart : {
                               plotBackgroundColor : null,
                               plotBorderWidth : null,

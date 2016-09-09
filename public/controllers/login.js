@@ -11,6 +11,7 @@ angular.module('profileBuilder.login', ['ngRoute']).controller(
                         localStorage.setItem('id', response.id);
                         localStorage.setItem('newUser', 'false');
                         localStorage.setItem('role', response.role);
+                        localStorage.setItem('status', response.status);
                         $http.get(appSettings.apiBase + '/' + localStorage.getItem('id') + '/basic')
                         .success(function(response) {
                             if (response.success) {
@@ -29,7 +30,11 @@ angular.module('profileBuilder.login', ['ngRoute']).controller(
                         if (localStorage.getItem('role') == 'hr') {
                           $state.go('genOBCode');
                         } else {
-                          $state.go('basic', {user_id: localStorage.getItem('id')});
+                          if(localStorage.getItem('status') != 'Verified') {
+                        	  $state.go('basic', {user_id: localStorage.getItem('id')});  
+                          } else {
+                        	  $state.go('profile', {user_id: localStorage.getItem('id')});
+                          }
                         }
                     } else {
                         var error = new AppError(response, $scope);

@@ -9,12 +9,20 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1  text-center margin-top-10">
 				<div>
+					<div class="bg-danger" ng-show="tokenInvalidError">
+						{{tokenInvalidError}}
+						<a type="submit"
+									class="md-raised md-primary md-button md-ink-ripple linkedinBut" ng-href="{{linkedinUrl}}">
+									<i class="fa fa-linkedin-square" aria-hidden="true"></i> <span
+										class="ng-scope">Connect with LinkedIn</span>
+						</a>
+					</div>
 					<!-- Profile Image -->
 					<div class="box box-primary">
 						<div class="box-body box-profile">
 							<div class="col-md-4">
 								<img class="profile-user-img img-responsive"
-									src={{userDetails.dateOfJoining}}
+									src={{userDetails.avatar}}
 									alt="{{userDetails.firstName}} {{userDetails.lastName}}">
 							</div>
 							<div class="col-md-4">
@@ -34,7 +42,7 @@
 
 										<div class="col-xs-offset-1 col-xs-5">
 											<button type="submit"
-												class="md-raised md-primary md-button md-ink-ripple mainBut"
+												class="md-raised md-primary md-button md-ink-ripple secondaryBut"
 												ng-click="saveEmailId()">Save</button>
 										</div>
 									</div>
@@ -43,7 +51,7 @@
 							<hr>
 							<div class="box-body">
 								<div class="col-md-4">
-									<div class="panel panel-primary">
+									<div class="panel panel-success">
 										<div class="panel-heading">
 											<i class="fa fa-book "></i>Education
 										</div>
@@ -61,29 +69,23 @@
 								</div>
 
 								<div class="col-md-4">
-
-									<div class="panel panel-primary">
+									<div class="panel panel-danger">
 										<div class="panel-heading">
 											<i class="fa fa-book "></i>Experience
 										</div>
 										<div class="panel-body">
-											<div ng-repeat="exp in userDetails.experience">
+											<div ng-repeat="exp in userDetails.previousExp">
 												<p class="text-muted">{{exp.previousCompanyName}}</p>
 												<p class="text-muted">{{exp.location}}</p>
 												<p class="text-muted">{{exp.designation}}</p>
-												<p class="text-muted">{{exp.fromYear}}-{{exp.toYear}}</p>
+												<p class="text-muted">{{exp.fromYear}}-{{exp.toYear || 'Present'}}</p>
 												<hr>
 											</div>
 										</div>
 									</div>
-
-
-
 								</div>
-
-
 								<div class="col-md-4">
-									<div class="panel panel-primary">
+									<div class="panel panel-warning">
 										<div class="panel-heading">
 											<i class="fa fa-book "></i>Certification
 										</div>
@@ -96,31 +98,32 @@
 									</div>
 
 									<hr>
-									<div class="panel panel-primary">
+									<div class="panel panel-info">
 										<div class="panel-heading">
 											<i class="fa fa-book "></i>Specialities
 										</div>
 										<div class="panel-body">
-											<div ng-repeat="skill in userDetails.skills">
-												<p class="text-muted">{{skill.skillName}}</p>
-											</div>
+											<span ng-repeat="skill in userDetails.skills" class="text-muted tag-cloud">
+												{{skill.skillName}}
+											</span>
 										</div>
 									</div>
 
 								</div>
 
 							</div>
-							<div class="col-md-offset-7 col-md-4">
+							<div class="col-md-offset-7 col-md-4" ng-show="{{isHR}}">
 
 								<div class="col-md-offset-2 col-md-4">
 									<button type="submit"
 										class="md-raised md-primary md-button md-ink-ripple mainBut"
-										ng-click="approve()">Approve</button>
+										ng-click="approve()">Approve <i class="fa fa-check"
+                                                                                        aria-hidden="true"></i></button>
 								</div>
 								<div class="col-md-offset-2 col-md-4">
 									<button type="submit"
-										class="md-raised md-primary md-button md-ink-ripple mainBut"
-										ng-click="requestModify()">Change Status</button>
+										class="md-raised md-primary md-button md-ink-ripple secondaryBut"
+										ng-click="requestModify()">Request Modification</button>
 								</div>
 							</div>
 						</div>
@@ -134,13 +137,13 @@
 						<div class="row">
 							<div class="col-xs-10 col-md-6 form-group">
 								<input type="text" class="form-control" id="title"
-									ng-model="rolestarTitle" placeholder="Title" required>
+									ng-model="rolestar.title" placeholder="Title" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-10 col-md-6 form-group">
 								<input type="text" class="form-control" id="personalEmailId"
-									ng-model="rolestarDescription" placeholder="Description"
+									ng-model="rolestar.description" placeholder="Description"
 									required>
 
 							</div>
