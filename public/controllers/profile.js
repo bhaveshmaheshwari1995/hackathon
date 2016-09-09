@@ -8,28 +8,52 @@ angular.module('profileBuilder.profile', [ 'ngRoute' ])
 			$scope.userDetails = {};
 			$scope.emailAvailable = null;
 			$scope.DOJAvailable = null;
+			$scope.hasToken = true;
 			$scope.isHR = (localStorage.getItem('role') == 'hr');
 
 			$http.get(appSettings.apiBase + '/' + userId).success(
 					function(response) {
 						if (response.success) {
 							$scope.userDetails = response.data;
+							$scope.emailAvailable = true;
+							if ($scope.userDetails.emailId == '') {
+								$scope.emailAvailable = (localStorage.getItem('role') == 'hr');
+							} else {
+								$scope.emailAvailable = false;
+							}
+							if ($scope.userDetails.dateOfJoining == '') {
+								$scope.DOJAvailable = (localStorage.getItem('role') == 'hr');
+
+							} else {
+								$scope.DOJAvailable = false;
+							}
 						} else {
 							var error = new AppError(response, $scope);
 							$scope.errorMessage = error.getErrorMessage();
 						}
 					}).error(function(response) {
-				var error = new AppError(response, $scope);
-				$scope.errorMessage = error.getErrorMessage();
-			});
+							var error = new AppError(response, $scope);
+							$scope.errorMessage = error.getErrorMessage();
+					});
+			
+			$http.get(appSettings.ssoBaseUrl + '/user/' + userId + '/token').success(
+					function(response) {
+						$scope.linkedinUrl = appSettings.ssoUrl + 'link/' + userId + '?redirectPath=/profile/'+userId;
+						if(!response.hasToken) {
+							$scope.tokenInvalidError = 'Profile hasn\'t been linked with Linkedin!'
+						} else {
+							$scope.tokenInvalidError = ''
+						}
+						
+					});
 
 			if ($scope.userDetails.emailId == undefined) {
-				$scope.emailAvailable = true;// (localStorage.getItem('role') == 'hr');
+				$scope.emailAvailable = (localStorage.getItem('role') == 'hr');
 			} else {
 				$scope.emailAvailable = false;
 			}
 			if ($scope.userDetails.dateOfJoining == undefined) {
-				$scope.DOJAvailable = true;//(localStorage.getItem('role') == 'hr');
+				$scope.DOJAvailable = (localStorage.getItem('role') == 'hr');
 
 			} else {
 				$scope.DOJAvailable = false;
@@ -107,8 +131,8 @@ angular.module('profileBuilder.profile', [ 'ngRoute' ])
 
 			$scope.addRolestar = function() {
 				$http.post(
-						appSettings.apiBase + '/users/' + userId + '/rewards',
-						data).success(function(response) {
+						appSettings.apiBase + '/' + userId + '/rewards',
+						$scope.rolestar).success(function(response) {
 					if (response.success) {
 						alert("Rolestar added successfully");
 

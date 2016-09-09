@@ -94,6 +94,11 @@ app.config( function($locationProvider, $stateProvider, $urlRouterProvider) {
     templateUrl: './views/profile.html',
       controller: 'profileCtrl'
   })
+  .state('profileConnected',{
+    url:'/profile/:userId/:status',
+    templateUrl: './views/profile.html',
+      controller: 'profileCtrl'
+  })  
   .state('genOBCode',{
     url:'/genOBCode',
     templateUrl: './views/genOBCode.html',
